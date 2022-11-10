@@ -12,13 +12,15 @@ namespace RecordStore.MVC.Areas.Admin.Controllers
     {
         private readonly IUserServices _userServices;
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IUserEmailStore<IdentityUser> _emailStore;
+        private readonly IUserStore<IdentityUser> _userStore;
 
-        public UsersController(IUserServices userServices, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        public UsersController(IUserServices userServices, UserManager<IdentityUser> userManager, IUserStore<IdentityUser> userStore)
         {
             _userServices = userServices;
             _userManager = userManager;
-            _roleManager = roleManager;
+            _userStore = userStore;
+            _emailStore = (IUserEmailStore<IdentityUser>)_userStore;
         }
 
         public async Task<IActionResult> Index()
@@ -99,6 +101,45 @@ namespace RecordStore.MVC.Areas.Admin.Controllers
                 await _userManager.RemoveFromRolesAsync(existingUser, rolesToRemove);
             }
             return View(editUserViewModel);
+        }
+
+        public async Task<IActionResult> Add()
+        {
+            var roles = (await _roleServices.GetAllRolesAsync())
+                .Select(r => new RoleViewModel { Id = r.Id, Name = r.Name, IsSelected = false })
+                .ToList();
+
+            var addUserViewModel = new AddUserViewModel { Roles = roles };
+
+            return View(addUserViewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(AddUserViewModel addUserViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new IdentityUser();
+
+                await _userStore.SetUserNameAsync(user, addUserViewModel.Username, CancellationToken.None);
+                await _emailStore.SetEmailAsync(user, addUserViewModel.Email, CancellationToken.None);
+                var result = await _userManager.CreateAsync(user, addUserViewModel.Password);
+
+                if (result.Succeeded)
+                {
+                    var rolesToAdd = addUserViewModel.Roles.Where(r => r.IsSelected).Select(r => r.Name);
+                    await _userManager.AddToRolesAsync(user, rolesToAdd);
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                }
+            }
+            return View(addUserViewModel);
         }
     }
 }

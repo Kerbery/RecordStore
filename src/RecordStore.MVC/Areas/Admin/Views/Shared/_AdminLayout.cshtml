@@ -15,9 +15,19 @@
                     Manage Users
                 </a>
             </li>
+            <li>
+                <a class="nav-link @Html.IsActive("Users", "Add")" asp-area="Admin" asp-controller="Users" asp-action="Add">
+                    Add User
+                </a>
+            </li>
         </ul>
     </div>
     <div class="col-md-10">
         @RenderBody()
     </div>
 </div>
+
+
+@section Scripts {
+    @{await RenderSectionAsync("Scripts", required: false);}
+}
