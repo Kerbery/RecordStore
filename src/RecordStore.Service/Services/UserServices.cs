@@ -22,6 +22,11 @@ namespace RecordStore.Service.Services
             return await _repository.GetAllAsync();
         }
 
+        public async Task UpdateUser(IdentityUser user)
+        {
+            await _repository.UpdateAsync(user);
+        }
+
         public async Task Lockout(Guid id)
         {
             var user = await _repository.GetAsync(id);

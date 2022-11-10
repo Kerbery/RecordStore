@@ -43,5 +43,62 @@ namespace RecordStore.MVC.Areas.Admin.Controllers
             await _userServices.RemoveLockout(id);
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> Edit(Guid id)
+        {
+            var user = await _userServices.GetUser(id);
+
+            var userRoles = await _userManager.GetRolesAsync(user);
+            var roles = _roleManager.Roles
+                .Select(r => new RoleViewModel { Id = r.Id, Name = r.Name, IsSelected = userRoles.Contains(r.Name) })
+                .ToList();
+
+            var userViewModel = new EditUserViewModel()
+            {
+                Id = Guid.Parse(user.Id),
+                Email = user.Email,
+                Username = user.UserName,
+                Roles = roles,
+            };
+
+            return View(userViewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditUserViewModel editUserViewModel)
+        {
+            var existingUser = await _userServices.GetUser(editUserViewModel.Id);
+            if (existingUser is null)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                existingUser.Email = editUserViewModel.Email;
+                existingUser.UserName = editUserViewModel.Username;
+                existingUser.NormalizedEmail = editUserViewModel.Email.ToUpper();
+                existingUser.NormalizedUserName = editUserViewModel.Username.ToUpper();
+
+                if (!string.IsNullOrWhiteSpace(editUserViewModel.Password))
+                {
+                    var passwordHasher = new PasswordHasher<IdentityUser>();
+                    existingUser.PasswordHash = passwordHasher.HashPassword(existingUser, editUserViewModel.Password);
+                }
+
+                await _userServices.UpdateUser(existingUser);
+
+                var currentUserRoles = await _userManager.GetRolesAsync(existingUser);
+                var selectedRoles = editUserViewModel.Roles.Where(r => r.IsSelected).Select(r => r.Name);
+
+                var rolesToAdd = selectedRoles.Except(currentUserRoles).ToList();
+                var rolesToRemove = currentUserRoles.Except(selectedRoles).ToList();
+
+
+                await _userManager.AddToRolesAsync(existingUser, rolesToAdd);
+                await _userManager.RemoveFromRolesAsync(existingUser, rolesToRemove);
+            }
+            return View(editUserViewModel);
+        }
     }
 }
