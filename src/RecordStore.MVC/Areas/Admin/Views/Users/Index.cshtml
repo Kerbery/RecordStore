@@ -1,8 +1,33 @@
-﻿@{
+﻿@using RecordStore.MVC.Areas.Admin.Models
+@{
     Layout = "../Shared/_AdminLayout.cshtml";
     ViewData["Title"] = "Manage Page";
 }
+@model IEnumerable<GetUserViewModel>
 
 <div class="text-center">
     <p>Here Users will be managed.</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Username</td>
+                    <td>@user.Email</td>
+                    <td>
+                        <a class="btn btn-primary" role="button" asp-area="Admin" asp-controller="Users" asp-action="Edit" asp-route-id="@user.Id">Edit</a>
+                        <a class="btn btn-primary" role="button" asp-area="Admin" asp-controller="Users" asp-action="Delete" asp-route-id="@user.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>

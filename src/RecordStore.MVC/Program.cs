@@ -1,6 +1,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using RecordStore.Core.Interfaces;
 using RecordStore.Infrastructure.Data;
+using RecordStore.Infrastructure.Repositories;
+using RecordStore.Service.Interfaces;
+using RecordStore.Service.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +17,10 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>()
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+builder.Services.AddScoped<IRepository<IdentityUser>, GenericRepository<IdentityUser>>();
+builder.Services.AddScoped<IUserServices, UserServices>();
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using RecordStore.MVC.Areas.Admin.Models;
+using RecordStore.Service.Interfaces;
 
 namespace RecordStore.MVC.Areas.Admin.Controllers
 {
@@ -7,9 +10,20 @@ namespace RecordStore.MVC.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class UsersController : Controller
     {
-        public IActionResult Index()
+        private readonly IUserServices _userServices;
+
+        public UsersController(IUserServices userServices)
         {
-            return View();
+            _userServices = userServices;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var users = (await _userServices.GetUsers())
+                .Select(u => new GetUserViewModel { Id = u.Id, Email = u.Email, Username = u.UserName, IsLockedout = u.LockoutEnd is not null })
+                .ToList();
+
+            return View(users);
         }
     }
 }
