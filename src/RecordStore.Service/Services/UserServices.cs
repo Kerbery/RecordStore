@@ -21,5 +21,19 @@ namespace RecordStore.Service.Services
         {
             return await _repository.GetAllAsync();
         }
+
+        public async Task Lockout(Guid id)
+        {
+            var user = await _repository.GetAsync(id);
+            user.LockoutEnd = DateTime.Today.AddYears(10);
+            await _repository.UpdateAsync(user);
+        }
+
+        public async Task RemoveLockout(Guid id)
+        {
+            var user = await _repository.GetAsync(id);
+            user.LockoutEnd = null;
+            await _repository.UpdateAsync(user);
+        }
     }
 }
