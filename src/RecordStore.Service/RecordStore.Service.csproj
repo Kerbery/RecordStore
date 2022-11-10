@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RecordStore.Infrastructure\RecordStore.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
