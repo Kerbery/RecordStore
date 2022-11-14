@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using RecordStore.MVC.Areas.Admin.Models;
+using RecordStore.Service.DTOs;
 using RecordStore.Service.Interfaces;
 
 namespace RecordStore.MVC.Areas.Admin.Controllers
@@ -11,16 +11,12 @@ namespace RecordStore.MVC.Areas.Admin.Controllers
     public class UsersController : Controller
     {
         private readonly IUserServices _userServices;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly IUserEmailStore<IdentityUser> _emailStore;
-        private readonly IUserStore<IdentityUser> _userStore;
+        private readonly IRoleServices _roleServices;
 
-        public UsersController(IUserServices userServices, UserManager<IdentityUser> userManager, IUserStore<IdentityUser> userStore)
+        public UsersController(IUserServices userServices, IRoleServices roleServices)
         {
             _userServices = userServices;
-            _userManager = userManager;
-            _userStore = userStore;
-            _emailStore = (IUserEmailStore<IdentityUser>)_userStore;
+            _roleServices = roleServices;
         }
 
         public async Task<IActionResult> Index()
@@ -50,9 +46,9 @@ namespace RecordStore.MVC.Areas.Admin.Controllers
         {
             var user = await _userServices.GetUser(id);
 
-            var userRoles = await _userManager.GetRolesAsync(user);
-            var roles = _roleManager.Roles
-                .Select(r => new RoleViewModel { Id = r.Id, Name = r.Name, IsSelected = userRoles.Contains(r.Name) })
+            var userRoles = await _roleServices.GetUserRolesAsync(Guid.Parse(user.Id));
+            var roles = (await _roleServices.GetAllRolesAsync())
+                .Select(r => new RoleViewModel { Id = r.Id, Name = r.Name, IsSelected = userRoles.Any(ur => ur.Name == r.Name) })
                 .ToList();
 
             var userViewModel = new EditUserViewModel()
@@ -69,36 +65,26 @@ namespace RecordStore.MVC.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(EditUserViewModel editUserViewModel)
         {
-            var existingUser = await _userServices.GetUser(editUserViewModel.Id);
-            if (existingUser is null)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
-                existingUser.Email = editUserViewModel.Email;
-                existingUser.UserName = editUserViewModel.Username;
-                existingUser.NormalizedEmail = editUserViewModel.Email.ToUpper();
-                existingUser.NormalizedUserName = editUserViewModel.Username.ToUpper();
+                var roles = editUserViewModel.Roles.Select(r => new UserRoleDTO(Name: r.Name, IsInRole: r.IsSelected));
+                var updateUserDTO = new UpdateUserDTO
+                (
+                    Id: editUserViewModel.Id,
+                    UserName: editUserViewModel.Username,
+                    Password: editUserViewModel.Password,
+                    Email: editUserViewModel.Email,
+                    Roles: roles
+                );
 
-                if (!string.IsNullOrWhiteSpace(editUserViewModel.Password))
+                try
                 {
-                    var passwordHasher = new PasswordHasher<IdentityUser>();
-                    existingUser.PasswordHash = passwordHasher.HashPassword(existingUser, editUserViewModel.Password);
+                    await _userServices.UpdateUser(updateUserDTO);
                 }
-
-                await _userServices.UpdateUser(existingUser);
-
-                var currentUserRoles = await _userManager.GetRolesAsync(existingUser);
-                var selectedRoles = editUserViewModel.Roles.Where(r => r.IsSelected).Select(r => r.Name);
-
-                var rolesToAdd = selectedRoles.Except(currentUserRoles).ToList();
-                var rolesToRemove = currentUserRoles.Except(selectedRoles).ToList();
-
-
-                await _userManager.AddToRolesAsync(existingUser, rolesToAdd);
-                await _userManager.RemoveFromRolesAsync(existingUser, rolesToRemove);
+                catch
+                {
+                    return NotFound();
+                }
             }
             return View(editUserViewModel);
         }
@@ -119,16 +105,19 @@ namespace RecordStore.MVC.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser();
+                var roles = addUserViewModel.Roles.Where(r => r.IsSelected).Select(r => r.Name);
+                var user = new CreateUserDTO
+                (
+                    UserName: addUserViewModel.Username,
+                    Email: addUserViewModel.Email,
+                    Password: addUserViewModel.Password,
+                    Roles: roles
+                );
 
-                await _userStore.SetUserNameAsync(user, addUserViewModel.Username, CancellationToken.None);
-                await _emailStore.SetEmailAsync(user, addUserViewModel.Email, CancellationToken.None);
-                var result = await _userManager.CreateAsync(user, addUserViewModel.Password);
+                var result = await _userServices.CreateUser(user);
 
                 if (result.Succeeded)
                 {
-                    var rolesToAdd = addUserViewModel.Roles.Where(r => r.IsSelected).Select(r => r.Name);
-                    await _userManager.AddToRolesAsync(user, rolesToAdd);
                     return RedirectToAction(nameof(Index));
                 }
                 else

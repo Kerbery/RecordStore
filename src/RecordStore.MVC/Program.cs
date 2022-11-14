@@ -19,7 +19,10 @@ builder.Services.AddDefaultIdentity<IdentityUser>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddScoped<IRepository<IdentityUser>, GenericRepository<IdentityUser>>();
+builder.Services.AddScoped<IRepository<IdentityRole>, GenericRepository<IdentityRole>>();
+builder.Services.AddScoped<IRoleRepository<IdentityRole>, RoleRepository>();
 builder.Services.AddScoped<IUserServices, UserServices>();
+builder.Services.AddScoped<IRoleServices, RoleServices>();
 
 builder.Services.AddControllersWithViews();
 

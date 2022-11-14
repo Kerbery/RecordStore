@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using RecordStore.Service.DTOs;
 
 namespace RecordStore.Service.Interfaces
 {
@@ -9,5 +10,7 @@ namespace RecordStore.Service.Interfaces
         Task UpdateUser(IdentityUser user);
         Task Lockout(Guid id);
         Task RemoveLockout(Guid id);
+        Task<IdentityResult> CreateUser(CreateUserDTO createUserDTO);
+        Task UpdateUser(UpdateUserDTO updateUserDTO);
     }
 }
