@@ -1,62 +1,63 @@
 ﻿@model RecordStore.MVC.Areas.Admin.Models.EditUserViewModel
 
 @{
-    ViewData["Title"] = "View";
+    ViewData["Title"] = "Edit user details";
 }
 
-<h1>@Model.Username</h1>
+<div class="container">
+    <h1>@Model.Username</h1>
 
-<h4>Edit user details</h4>
-<hr />
-<div class="row">
-    <div class="col-lg-5">
-        <form asp-action="Edit" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="mb-3">
-                <label asp-for="Username" class="form-label"></label>
-                <input asp-for="Username" class="form-control" />
-                <span asp-validation-for="Username" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="Email" class="form-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="Password" class="form-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="ConfirmPassword" class="form-label"></label>
-                <input asp-for="ConfirmPassword" class="form-control" />
-                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                @for (int i = 0; i < Model.Roles.Count; i++)
-                {
+    <h4>Edit user details</h4>
+    <hr />
+    <div class="row d-flex justify-content-center">
+        <div class="col-lg-5">
+            <form asp-action="Edit" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="mb-3">
+                    <label asp-for="Username" class="form-label"></label>
+                    <input asp-for="Username" class="form-control" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="ConfirmPassword" class="form-label"></label>
+                    <input asp-for="ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    @for (int i = 0; i < Model.Roles.Count; i++)
+                    {
                     <div class="form-check m-1">
                         <input type="hidden" asp-for="@Model.Roles[i].Id" />
                         <input type="hidden" asp-for="@Model.Roles[i].Name" />
-                        <input type="checkbox" asp-for="@Model.Roles[i].IsSelected" class="form-check-input"  />
+                        <input type="checkbox" asp-for="@Model.Roles[i].IsSelected" class="form-check-input" />
                         <label asp-for="@Model.Roles[i].IsSelected" class="form-check-label">
                             @Model.Roles[i].Name
                         </label>
                     </div>
-                }
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+                    }
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

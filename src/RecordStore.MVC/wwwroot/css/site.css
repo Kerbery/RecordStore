@@ -9,13 +9,21 @@ html {
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    height: 100%;
+    margin-bottom: 60px;
 }
+
+main {
+    padding-bottom: 60px;
+    padding-top: 59px;
+}
+
 .placeholder-backgound {
     width: 32px;
     height: 32px;
