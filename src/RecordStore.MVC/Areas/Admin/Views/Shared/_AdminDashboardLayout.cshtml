@@ -1,0 +1,55 @@
+﻿@using RecordStore.MVC.Extensions
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+<div class="wrapper d-flex align-items-stretch h-100">
+    <div class="d-flex flex-column flex-shrink-0 p-3 bg-light h-100" style="width: 280px;">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+            <i class="bi bi-gear" style="font-size:32px"></i>
+            <span class="fs-4 ps-2">Admin Tools</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+                <a class="nav-link @Html.IsActive("Home", "Index", "link-dark")" asp-area="Admin" asp-controller="Home" asp-action="Index">
+                    <i class="bi bi-house-door"></i>
+                    Home
+                </a>
+            </li>
+            <li>
+                <a class="nav-link link-dark @Html.IsActive("Users", "Index", "link-dark")" asp-area="Admin" asp-controller="Users" asp-action="Index">
+                    <i class="bi bi-speedometer2"></i>
+                    Manage Users
+                </a>
+            </li>
+            <li>
+                <a class="nav-link link-dark @Html.IsActive("Users", "Add", "link-dark")" asp-area="Admin" asp-controller="Users" asp-action="Add">
+                    <i class="bi bi-person-plus"></i>
+                    Add User
+                </a>
+            </li>
+        </ul>
+        <hr>
+        <div class="dropdown">
+            <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="rounded-circle me-2 placeholder-backgound"><span src="" alt="" class="rounded-circle me-2 placeholder-background" /></div>
+                <strong>@User.Identity?.Name</strong>
+            </a>
+            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                <li><a class="dropdown-item blue-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Profile">Profile</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                    <a class="dropdown-item" href="javascript: document.logoutForm.submit()">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="w-100 p-3">
+        @RenderBody()
+    </div>
+</div>
+
+@section Scripts {
+    @{await RenderSectionAsync("Scripts", required: false);}
+}

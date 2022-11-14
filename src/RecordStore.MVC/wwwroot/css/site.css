@@ -16,3 +16,12 @@ html {
 body {
   margin-bottom: 60px;
 }
+.placeholder-backgound {
+    width: 32px;
+    height: 32px;
+    background-image: linear-gradient(135deg,#8e8485,#70929c);
+}
+
+.blue-link {
+    color: #0077cc;
+}
