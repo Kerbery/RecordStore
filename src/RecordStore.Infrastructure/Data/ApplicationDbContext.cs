@@ -2,11 +2,22 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using RecordStore.Core.Entities.Identity;
+using RecordStore.Core.Entities.Models;
 
 namespace RecordStore.Infrastructure.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Role, Guid>
     {
+        public DbSet<Record> Records { get; set; }
+        public DbSet<Artist> Artists { get; set; }
+        public DbSet<Genre> Genres { get; set; }
+        public DbSet<Style> Styles { get; set; }
+        public DbSet<Photo> Photos { get; set; }
+        public DbSet<Condition> Conditions { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Release> Releases { get; set; }
+        public DbSet<Format> Formats { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
