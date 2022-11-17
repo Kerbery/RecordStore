@@ -1,4 +1,4 @@
-﻿namespace RecordStore.MVC.Areas.Admin.Models
+﻿namespace RecordStore.Core.ViewModels
 {
     public class RoleViewModel
     {

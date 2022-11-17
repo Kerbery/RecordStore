@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using RecordStore.Core.Entities.Identity;
-using RecordStore.Service.DTOs;
+using RecordStore.Core.ViewModels;
 
 namespace RecordStore.Service.Interfaces
 {
@@ -11,7 +11,7 @@ namespace RecordStore.Service.Interfaces
         Task UpdateUser(ApplicationUser user);
         Task Lockout(Guid id);
         Task RemoveLockout(Guid id);
-        Task<IdentityResult> CreateUser(CreateUserDTO createUserDTO);
-        Task UpdateUser(UpdateUserDTO updateUserDTO);
+        Task<IdentityResult> CreateUser(AddUserViewModel addUserViewModel);
+        Task UpdateUser(EditUserViewModel editUserViewModel);
     }
 }

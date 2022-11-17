@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using RecordStore.Core.Entities.Identity;
-using RecordStore.Service.DTOs;
+using RecordStore.Core.ViewModels;
 using RecordStore.Service.Interfaces;
 
 namespace RecordStore.Service.Services
@@ -46,43 +46,44 @@ namespace RecordStore.Service.Services
             await UpdateUser(user);
         }
 
-        public async Task<IdentityResult> CreateUser(CreateUserDTO createUserDTO)
+        public async Task<IdentityResult> CreateUser(AddUserViewModel addUserViewModel)
         {
             var user = new ApplicationUser();
-            await _userStore.SetUserNameAsync(user, createUserDTO.UserName, CancellationToken.None);
-            await _emailStore.SetEmailAsync(user, createUserDTO.Email, CancellationToken.None);
-            var result = await _userManager.CreateAsync(user, createUserDTO.Password);
+            await _userStore.SetUserNameAsync(user, addUserViewModel.Username, CancellationToken.None);
+            await _emailStore.SetEmailAsync(user, addUserViewModel.Email, CancellationToken.None);
+            var result = await _userManager.CreateAsync(user, addUserViewModel.Password);
             if (result.Succeeded)
             {
-                var roleResult = await _userManager.AddToRolesAsync(user, createUserDTO.Roles);
+                var roles = addUserViewModel.Roles.Where(r => r.IsSelected).Select(r => r.Name);                
+                var roleResult = await _userManager.AddToRolesAsync(user, roles);
                 return roleResult;
             }
             return result;
         }
 
-        public async Task UpdateUser(UpdateUserDTO updateUserDTO)
+        public async Task UpdateUser(EditUserViewModel editUserViewModel)
         {
-            var existingUser = await GetUser(updateUserDTO.Id);
+            var existingUser = await GetUser(editUserViewModel.Id);
             if (existingUser is null)
             {
-                throw new Exception($"User with Id={{{updateUserDTO.Id}}} not found");
+                throw new Exception($"User with Id={{{editUserViewModel.Id}}} not found");
             }
 
-            existingUser.Email = updateUserDTO.Email;
-            existingUser.UserName = updateUserDTO.UserName;
-            existingUser.NormalizedEmail = updateUserDTO.Email.ToUpper();
-            existingUser.NormalizedUserName = updateUserDTO.UserName.ToUpper();
+            existingUser.Email = editUserViewModel.Email;
+            existingUser.UserName = editUserViewModel.Username;
+            existingUser.NormalizedEmail = editUserViewModel.Email.ToUpper();
+            existingUser.NormalizedUserName = editUserViewModel.Username.ToUpper();
 
-            if (!string.IsNullOrWhiteSpace(updateUserDTO.Password))
+            if (!string.IsNullOrWhiteSpace(editUserViewModel.Password))
             {
                 var passwordHasher = new PasswordHasher<ApplicationUser>();
-                existingUser.PasswordHash = passwordHasher.HashPassword(existingUser, updateUserDTO.Password);
+                existingUser.PasswordHash = passwordHasher.HashPassword(existingUser, editUserViewModel.Password);
             }
 
             await _userManager.UpdateAsync(existingUser);
 
             var existingUserRoles = await _userManager.GetRolesAsync(existingUser);
-            var selectedRoles = updateUserDTO.Roles.Where(r => r.IsInRole).Select(r => r.Name);
+            var selectedRoles = editUserViewModel.Roles.Where(r => r.IsSelected).Select(r => r.Name);
 
             var rolesToAdd = selectedRoles.Except(existingUserRoles);
             var rolesToRemove = existingUserRoles.Except(selectedRoles);

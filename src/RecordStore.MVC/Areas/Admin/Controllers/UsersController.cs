@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using RecordStore.MVC.Areas.Admin.Models;
-using RecordStore.Service.DTOs;
+using RecordStore.Core.ViewModels;
 using RecordStore.Service.Interfaces;
 
 namespace RecordStore.MVC.Areas.Admin.Controllers
@@ -67,19 +66,9 @@ namespace RecordStore.MVC.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var roles = editUserViewModel.Roles.Select(r => new UserRoleDTO(Name: r.Name, IsInRole: r.IsSelected));
-                var updateUserDTO = new UpdateUserDTO
-                (
-                    Id: editUserViewModel.Id,
-                    UserName: editUserViewModel.Username,
-                    Password: editUserViewModel.Password,
-                    Email: editUserViewModel.Email,
-                    Roles: roles
-                );
-
                 try
                 {
-                    await _userServices.UpdateUser(updateUserDTO);
+                    await _userServices.UpdateUser(editUserViewModel);
                 }
                 catch
                 {
@@ -105,16 +94,7 @@ namespace RecordStore.MVC.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var roles = addUserViewModel.Roles.Where(r => r.IsSelected).Select(r => r.Name);
-                var user = new CreateUserDTO
-                (
-                    UserName: addUserViewModel.Username,
-                    Email: addUserViewModel.Email,
-                    Password: addUserViewModel.Password,
-                    Roles: roles
-                );
-
-                var result = await _userServices.CreateUser(user);
+                var result = await _userServices.CreateUser(addUserViewModel);
 
                 if (result.Succeeded)
                 {
