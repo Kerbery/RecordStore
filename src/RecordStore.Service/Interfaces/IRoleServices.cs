@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using RecordStore.Core.Entities.Identity;
 
 namespace RecordStore.Service.Interfaces
 {
     public interface IRoleServices
     {
-        Task<IEnumerable<IdentityRole>> GetAllRolesAsync();
-        Task<IEnumerable<IdentityRole>> GetUserRolesAsync(Guid id);
+        Task<IEnumerable<Role>> GetAllRolesAsync();
+        Task<IEnumerable<Role>> GetUserRolesAsync(Guid id);
     }
 }

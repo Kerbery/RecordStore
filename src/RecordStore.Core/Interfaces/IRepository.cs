@@ -1,8 +1,9 @@
-﻿using System.Linq.Expressions;
+﻿using RecordStore.Core.Entities;
+using System.Linq.Expressions;
 
 namespace RecordStore.Core.Interfaces
 {
-    public interface IRepository<T> where T : class
+    public interface IRepository<T> where T : class, IEntity
     {
         Task CreateAsync(T entity);
         Task<IReadOnlyCollection<T>> GetAllAsync();

@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RecordStore.Core.Entities;
 using RecordStore.Core.Interfaces;
 using RecordStore.Infrastructure.Data;
 using System.Linq.Expressions;
 
 namespace RecordStore.Infrastructure.Repositories
 {
-    public class GenericRepository<T> : IRepository<T> where T : class
+    public class GenericRepository<T> : IRepository<T> where T : class, IEntity
     {
         private readonly ApplicationDbContext _context;
         private readonly DbSet<T> _table;

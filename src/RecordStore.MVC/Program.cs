@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using RecordStore.Core.Entities.Identity;
 using RecordStore.Core.Interfaces;
 using RecordStore.Infrastructure.Data;
 using RecordStore.Infrastructure.Repositories;
@@ -14,13 +16,16 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>()
-    .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services
+    .AddDefaultIdentity<ApplicationUser>()
+    .AddRoles<Role>()
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddUserStore<UserStore<ApplicationUser, Role, ApplicationDbContext, Guid>>()
+    .AddRoleStore<RoleStore<Role, ApplicationDbContext, Guid>>(); ;
 
-builder.Services.AddScoped<IRepository<IdentityUser>, GenericRepository<IdentityUser>>();
-builder.Services.AddScoped<IRepository<IdentityRole>, GenericRepository<IdentityRole>>();
-builder.Services.AddScoped<IRoleRepository<IdentityRole>, RoleRepository>();
+builder.Services.AddScoped<IRepository<ApplicationUser>, GenericRepository<ApplicationUser>>();
+builder.Services.AddScoped<IRepository<Role>, GenericRepository<Role>>();
+builder.Services.AddScoped<IRoleRepository<Role>, RoleRepository>();
 builder.Services.AddScoped<IUserServices, UserServices>();
 builder.Services.AddScoped<IRoleServices, RoleServices>();
 

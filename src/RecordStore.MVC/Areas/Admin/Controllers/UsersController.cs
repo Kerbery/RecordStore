@@ -46,14 +46,14 @@ namespace RecordStore.MVC.Areas.Admin.Controllers
         {
             var user = await _userServices.GetUser(id);
 
-            var userRoles = await _roleServices.GetUserRolesAsync(Guid.Parse(user.Id));
+            var userRoles = await _roleServices.GetUserRolesAsync(user.Id);
             var roles = (await _roleServices.GetAllRolesAsync())
                 .Select(r => new RoleViewModel { Id = r.Id, Name = r.Name, IsSelected = userRoles.Any(ur => ur.Name == r.Name) })
                 .ToList();
 
             var userViewModel = new EditUserViewModel()
             {
-                Id = Guid.Parse(user.Id),
+                Id = user.Id,
                 Email = user.Email,
                 Username = user.UserName,
                 Roles = roles,

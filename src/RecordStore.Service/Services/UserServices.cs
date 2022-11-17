@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using RecordStore.Core.Entities.Identity;
 using RecordStore.Service.DTOs;
 using RecordStore.Service.Interfaces;
 
@@ -6,27 +7,27 @@ namespace RecordStore.Service.Services
 {
     public class UserServices : IUserServices
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly IUserEmailStore<IdentityUser> _emailStore;
-        private readonly IUserStore<IdentityUser> _userStore;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IUserEmailStore<ApplicationUser> _emailStore;
+        private readonly IUserStore<ApplicationUser> _userStore;
 
-        public UserServices( UserManager<IdentityUser> userManager, IUserStore<IdentityUser> userStore)
+        public UserServices( UserManager<ApplicationUser> userManager, IUserStore<ApplicationUser> userStore)
         {
             _userManager = userManager;
             _userStore = userStore;
-            _emailStore = (IUserEmailStore<IdentityUser>)_userStore;
+            _emailStore = (IUserEmailStore<ApplicationUser>)_userStore;
         }
-        public async Task<IdentityUser> GetUser(Guid id)
+        public async Task<ApplicationUser> GetUser(Guid id)
         {
             return await _userManager.FindByIdAsync(id.ToString());
         }
 
-        public async Task<IEnumerable<IdentityUser>> GetUsers()
+        public async Task<IEnumerable<ApplicationUser>> GetUsers()
         {
             return _userManager.Users.AsEnumerable();
         }
 
-        public async Task UpdateUser(IdentityUser user)
+        public async Task UpdateUser(ApplicationUser user)
         {
             await _userManager.UpdateAsync(user);
         }
@@ -47,7 +48,7 @@ namespace RecordStore.Service.Services
 
         public async Task<IdentityResult> CreateUser(CreateUserDTO createUserDTO)
         {
-            var user = new IdentityUser();
+            var user = new ApplicationUser();
             await _userStore.SetUserNameAsync(user, createUserDTO.UserName, CancellationToken.None);
             await _emailStore.SetEmailAsync(user, createUserDTO.Email, CancellationToken.None);
             var result = await _userManager.CreateAsync(user, createUserDTO.Password);
@@ -74,7 +75,7 @@ namespace RecordStore.Service.Services
 
             if (!string.IsNullOrWhiteSpace(updateUserDTO.Password))
             {
-                var passwordHasher = new PasswordHasher<IdentityUser>();
+                var passwordHasher = new PasswordHasher<ApplicationUser>();
                 existingUser.PasswordHash = passwordHasher.HashPassword(existingUser, updateUserDTO.Password);
             }
 
