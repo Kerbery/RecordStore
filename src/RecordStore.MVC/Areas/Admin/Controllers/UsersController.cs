@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using RecordStore.Core.ViewModels;
+using RecordStore.Core.Extensions;
+using RecordStore.Core.ViewModels.User;
 using RecordStore.Service.Interfaces;
 
 namespace RecordStore.MVC.Areas.Admin.Controllers
@@ -21,8 +22,7 @@ namespace RecordStore.MVC.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var users = (await _userServices.GetUsers())
-                .Select(u => new GetUserViewModel { Id = u.Id, Email = u.Email, Username = u.UserName, IsLockedout = u.LockoutEnd is not null })
-                .ToList();
+                .Select(u => u.AsViewModel());
 
             return View(users);
         }
@@ -47,7 +47,7 @@ namespace RecordStore.MVC.Areas.Admin.Controllers
 
             var userRoles = await _roleServices.GetUserRolesAsync(user.Id);
             var roles = (await _roleServices.GetAllRolesAsync())
-                .Select(r => new RoleViewModel { Id = r.Id, Name = r.Name, IsSelected = userRoles.Any(ur => ur.Name == r.Name) })
+                .Select(role => role.AsViewModel(isSelected: userRoles.Any(userRole => userRole.Name == role.Name)))
                 .ToList();
 
             var userViewModel = new EditUserViewModel()
@@ -81,7 +81,7 @@ namespace RecordStore.MVC.Areas.Admin.Controllers
         public async Task<IActionResult> Add()
         {
             var roles = (await _roleServices.GetAllRolesAsync())
-                .Select(r => new RoleViewModel { Id = r.Id, Name = r.Name, IsSelected = false })
+                .Select(r => r.AsViewModel())
                 .ToList();
 
             var addUserViewModel = new AddUserViewModel { Roles = roles };

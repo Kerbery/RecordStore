@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using RecordStore.Core.Entities.Identity;
-using RecordStore.Core.ViewModels;
+using RecordStore.Core.ViewModels.User;
 
 namespace RecordStore.Service.Interfaces
 {
