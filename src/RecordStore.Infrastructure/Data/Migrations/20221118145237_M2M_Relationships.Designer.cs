@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RecordStore.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using RecordStore.Infrastructure.Data;
 namespace RecordStore.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221118145237_M2M_Relationships")]
+    partial class M2M_Relationships
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,7 +36,7 @@ namespace RecordStore.Infrastructure.Migrations
 
                     b.HasIndex("RecordsId");
 
-                    b.ToTable("ArtistRecord", (string)null);
+                    b.ToTable("ArtistRecord");
                 });
 
             modelBuilder.Entity("CategoryRecord", b =>
@@ -49,7 +51,7 @@ namespace RecordStore.Infrastructure.Migrations
 
                     b.HasIndex("RecordsId");
 
-                    b.ToTable("CategoryRecord", (string)null);
+                    b.ToTable("CategoryRecord");
                 });
 
             modelBuilder.Entity("GenreRecord", b =>
@@ -64,7 +66,7 @@ namespace RecordStore.Infrastructure.Migrations
 
                     b.HasIndex("RecordsId");
 
-                    b.ToTable("GenreRecord", (string)null);
+                    b.ToTable("GenreRecord");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -336,7 +338,7 @@ namespace RecordStore.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Artists", (string)null);
+                    b.ToTable("Artists");
                 });
 
             modelBuilder.Entity("RecordStore.Core.Entities.Models.Category", b =>
@@ -362,7 +364,7 @@ namespace RecordStore.Infrastructure.Migrations
 
                     b.HasIndex("ParentCategoryId");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("RecordStore.Core.Entities.Models.Condition", b =>
@@ -380,7 +382,7 @@ namespace RecordStore.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Conditions", (string)null);
+                    b.ToTable("Conditions");
                 });
 
             modelBuilder.Entity("RecordStore.Core.Entities.Models.Format", b =>
@@ -398,7 +400,7 @@ namespace RecordStore.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Formats", (string)null);
+                    b.ToTable("Formats");
                 });
 
             modelBuilder.Entity("RecordStore.Core.Entities.Models.Genre", b =>
@@ -416,7 +418,7 @@ namespace RecordStore.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genres", (string)null);
+                    b.ToTable("Genres");
                 });
 
             modelBuilder.Entity("RecordStore.Core.Entities.Models.Photo", b =>
@@ -444,7 +446,7 @@ namespace RecordStore.Infrastructure.Migrations
 
                     b.HasIndex("RecordId");
 
-                    b.ToTable("Photos", (string)null);
+                    b.ToTable("Photos");
                 });
 
             modelBuilder.Entity("RecordStore.Core.Entities.Models.Record", b =>
@@ -486,7 +488,7 @@ namespace RecordStore.Infrastructure.Migrations
 
                     b.HasIndex("ReleaseId");
 
-                    b.ToTable("Records", (string)null);
+                    b.ToTable("Records");
                 });
 
             modelBuilder.Entity("RecordStore.Core.Entities.Models.Release", b =>
@@ -504,7 +506,7 @@ namespace RecordStore.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Releases", (string)null);
+                    b.ToTable("Releases");
                 });
 
             modelBuilder.Entity("RecordStore.Core.Entities.Models.Style", b =>
@@ -522,7 +524,7 @@ namespace RecordStore.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Styles", (string)null);
+                    b.ToTable("Styles");
                 });
 
             modelBuilder.Entity("RecordStyle", b =>
@@ -537,7 +539,7 @@ namespace RecordStore.Infrastructure.Migrations
 
                     b.HasIndex("StylesId");
 
-                    b.ToTable("RecordStyle", (string)null);
+                    b.ToTable("RecordStyle");
                 });
 
             modelBuilder.Entity("ArtistRecord", b =>
