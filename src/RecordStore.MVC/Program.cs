@@ -4,9 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using RecordStore.Core.Entities.Identity;
 using RecordStore.Core.Interfaces;
 using RecordStore.Infrastructure.Data;
-using RecordStore.Infrastructure.Repositories;
-using RecordStore.Service.Interfaces;
-using RecordStore.Service.Services;
+using RecordStore.MVC.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,12 +19,9 @@ builder.Services
     .AddRoles<Role>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddUserStore<UserStore<ApplicationUser, Role, ApplicationDbContext, Guid>>()
-    .AddRoleStore<RoleStore<Role, ApplicationDbContext, Guid>>(); ;
+    .AddRoleStore<RoleStore<Role, ApplicationDbContext, Guid>>();
 
-builder.Services.AddScoped<IRepository<ApplicationUser>, GenericRepository<ApplicationUser>>();
-builder.Services.AddScoped<IRoleRepository, RoleRepository>();
-builder.Services.AddScoped<IUserServices, UserServices>();
-builder.Services.AddScoped<IRoleServices, RoleServices>();
+builder.Services.ConfigureDependecyInjections();
 
 builder.Services.AddControllersWithViews();
 
