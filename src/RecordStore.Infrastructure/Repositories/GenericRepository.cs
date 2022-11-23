@@ -8,8 +8,8 @@ namespace RecordStore.Infrastructure.Repositories
 {
     public class GenericRepository<T> : IRepository<T> where T : class, IEntity
     {
-        private readonly ApplicationDbContext _context;
-        private readonly DbSet<T> _table;
+        private protected ApplicationDbContext _context;
+        private protected DbSet<T> _table;
 
         public GenericRepository(ApplicationDbContext context)
         {
@@ -39,7 +39,8 @@ namespace RecordStore.Infrastructure.Repositories
 
         public async Task CreateAsync(T entity)
         {
-            await _table.AddAsync(entity);
+            _table.Add(entity);
+            await _context.SaveChangesAsync();
         }
 
         public async Task UpdateAsync(T entity)

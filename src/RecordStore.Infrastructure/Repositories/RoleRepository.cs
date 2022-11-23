@@ -5,19 +5,15 @@ using RecordStore.Infrastructure.Data;
 
 namespace RecordStore.Infrastructure.Repositories
 {
-    public class RoleRepository : GenericRepository<Role>, IRoleRepository<Role>
+    public class RoleRepository : GenericRepository<Role>, IRoleRepository
     {
-        private readonly ApplicationDbContext _context;
-        public RoleRepository(ApplicationDbContext context) : base(context)
-        {
-            _context = context;
-        }
+        public RoleRepository(ApplicationDbContext context) : base(context) { }
 
-        public async Task<IReadOnlyCollection<Role>> GetUserRolesAsync(Guid id)
+        public async Task<IReadOnlyCollection<Role>> GetUserRolesAsync(Guid userId)
         {
             return await (
                 from user in _context.Users
-                where user.Id == id
+                where user.Id == userId
                 join userRoles in _context.UserRoles on user.Id equals userRoles.UserId
                 join role in _context.Roles on userRoles.RoleId equals role.Id
                 select role)

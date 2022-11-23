@@ -1,9 +1,9 @@
-﻿using RecordStore.Core.Entities;
+﻿using RecordStore.Core.Entities.Identity;
 
 namespace RecordStore.Core.Interfaces
 {
-    public interface IRoleRepository<T> : IRepository<T> where T: class, IEntity
+    public interface IRoleRepository : IRepository<Role>
     {
-        Task<IReadOnlyCollection<T>> GetUserRolesAsync(Guid id);
+        Task<IReadOnlyCollection<Role>> GetUserRolesAsync(Guid id);
     }
 }

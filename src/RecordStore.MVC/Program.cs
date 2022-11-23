@@ -24,8 +24,7 @@ builder.Services
     .AddRoleStore<RoleStore<Role, ApplicationDbContext, Guid>>(); ;
 
 builder.Services.AddScoped<IRepository<ApplicationUser>, GenericRepository<ApplicationUser>>();
-builder.Services.AddScoped<IRepository<Role>, GenericRepository<Role>>();
-builder.Services.AddScoped<IRoleRepository<Role>, RoleRepository>();
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<IUserServices, UserServices>();
 builder.Services.AddScoped<IRoleServices, RoleServices>();
 

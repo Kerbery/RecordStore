@@ -6,9 +6,9 @@ namespace RecordStore.Service.Services
 {
     public class RoleServices : IRoleServices
     {
-        private readonly IRoleRepository<Role> _roleRepository;
+        private readonly IRoleRepository _roleRepository;
 
-        public RoleServices(IRoleRepository<Role> roleRepository)
+        public RoleServices(IRoleRepository roleRepository)
         {
             _roleRepository = roleRepository;
         }
