@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using RecordStore.Core.ViewModels.Role;
 
-namespace RecordStore.Core.ViewModels
+namespace RecordStore.Core.ViewModels.User
 {
     public class EditUserViewModel
     {

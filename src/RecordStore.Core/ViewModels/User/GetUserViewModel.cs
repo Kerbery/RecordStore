@@ -1,4 +1,4 @@
-﻿namespace RecordStore.Core.ViewModels
+﻿namespace RecordStore.Core.ViewModels.User
 {
     public class GetUserViewModel
     {

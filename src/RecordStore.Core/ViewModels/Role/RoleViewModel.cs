@@ -1,4 +1,4 @@
-﻿namespace RecordStore.Core.ViewModels
+﻿namespace RecordStore.Core.ViewModels.Role
 {
     public class RoleViewModel
     {
