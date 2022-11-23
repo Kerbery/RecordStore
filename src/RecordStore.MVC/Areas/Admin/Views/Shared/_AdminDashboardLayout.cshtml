@@ -29,6 +29,12 @@
                 </a>
             </li>
             <li>
+                <a class="nav-link link-dark @Html.IsActive("Records", "Index", "link-dark")" asp-area="Admin" asp-controller="Records" asp-action="Index">
+                    <i class="bi bi-vinyl-fill"></i>
+                    Manage Records
+                </a>
+            </li>
+            <li>
                 <a class="nav-link link-dark @Html.IsActive("Details", "Index", "link-dark")" asp-area="Admin" asp-controller="Details" asp-action="Index">
                     <i class="bi bi-vinyl-fill"></i>
                     Record Details
