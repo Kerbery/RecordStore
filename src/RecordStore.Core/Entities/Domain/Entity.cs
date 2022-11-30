@@ -2,7 +2,7 @@
 
 namespace RecordStore.Core.Entities.Models
 {
-    public class Entity : IEntity
+    public abstract class Entity : IEntity
     {
         [Key]
         public Guid Id { get; set; } = Guid.NewGuid();
