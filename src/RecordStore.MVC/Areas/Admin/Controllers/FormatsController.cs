@@ -46,7 +46,7 @@ namespace RecordStore.MVC.Areas.Admin.Controllers
 
         // PUT api/<FormatsController>/5
         [HttpPut("{id}")]
-        public async Task<ActionResult> PutAsync(Guid id, [FromBody] UpdateFormatDTO updateFormatDTO)
+        public async Task<ActionResult> PutAsync(Guid id, [FromForm] UpdateFormatDTO updateFormatDTO)
         {
             await _formatServices.UpdateAsync(id, updateFormatDTO);
             return Ok();

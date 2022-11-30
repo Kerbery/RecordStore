@@ -46,10 +46,17 @@ namespace RecordStore.MVC.Areas.Admin.Controllers
 
         // PUT api/<GenresController>/5
         [HttpPut("{id}")]
-        public async Task<ActionResult> PutAsync(Guid id, [FromBody] UpdateGenreDTO updateGenreDTO)
+        public async Task<ActionResult> PutAsync(Guid id, [FromForm] UpdateGenreDTO updateGenreDTO)
         {
-            await _genreServices.UpdateAsync(id, updateGenreDTO);
-            return Ok();
+            if (ModelState.IsValid)
+            {
+                await _genreServices.UpdateAsync(id, updateGenreDTO);
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
         // DELETE api/<GenresController>/5

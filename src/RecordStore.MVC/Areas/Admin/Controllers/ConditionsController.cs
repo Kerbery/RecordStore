@@ -47,7 +47,7 @@ namespace RecordStore.MVC.Areas.Admin.Controllers
 
         // PUT api/<ConditionsController>/5
         [HttpPut("{id}")]
-        public async Task<ActionResult> PutAsync(Guid id, [FromBody] UpdateConditionDTO updateConditionDTO)
+        public async Task<ActionResult> PutAsync(Guid id, [FromForm] UpdateConditionDTO updateConditionDTO)
         {
             await _conditionServices.UpdateAsync(id, updateConditionDTO);
             return Ok();

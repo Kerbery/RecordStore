@@ -47,7 +47,7 @@ namespace RecordStore.MVC.Areas.Admin.Controllers
 
         // PUT api/<StylesController>/5
         [HttpPut("{id}")]
-        public async Task<ActionResult> PutAsync(Guid id, [FromBody] UpdateStyleDTO updateGenreDTO)
+        public async Task<ActionResult> PutAsync(Guid id, [FromForm] UpdateStyleDTO updateGenreDTO)
         {
             await _styleServices.UpdateAsync(id, updateGenreDTO);
             return Ok();

@@ -46,7 +46,7 @@ namespace RecordStore.MVC.Areas.Admin.Controllers
 
         // PUT api/<CategoriesController>/5
         [HttpPut("{id}")]
-        public async Task<ActionResult> PutAsync(Guid id, [FromBody] UpdateCategoryDTO updateCategoryDTO)
+        public async Task<ActionResult> PutAsync(Guid id, [FromForm] UpdateCategoryDTO updateCategoryDTO)
         {
             await _categoryServices.UpdateAsync(id, updateCategoryDTO);
             return Ok();

@@ -46,7 +46,7 @@ namespace RecordStore.MVC.Areas.Admin.Controllers
 
         // PUT api/<ArtistsController>/5
         [HttpPut("{id}")]
-        public async Task<ActionResult> PutAsync(Guid id, [FromBody] UpdateArtistDTO updateArtistDTO)
+        public async Task<ActionResult> PutAsync(Guid id, [FromForm] UpdateArtistDTO updateArtistDTO)
         {
             await _artistServices.UpdateAsync(id, updateArtistDTO);
             return Ok();
