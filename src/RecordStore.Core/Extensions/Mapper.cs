@@ -27,13 +27,7 @@ namespace RecordStore.Core.Extensions
                 Id = category.Id,
                 Name = category.Name,
                 Position = category.Position,
-                ParentCategory = category.ParentCategory is not null ? new GetCategoryDTO
-                {
-                    Id = category.ParentCategory.Id,
-                    Name = category.ParentCategory.Name,
-                    Position = category.ParentCategory.Position,
-                    ParentCategory = null
-                } : null
+                ParentCategoryId = category.ParentCategoryId
             };
         }
 
