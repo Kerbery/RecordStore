@@ -7,6 +7,6 @@ namespace RecordStore.Service.Interfaces
     public interface IRecordServices : IBaseServices<Record>
     {
         Task<IdentityResult> CreateAsync(CreateRecordViewModel record);
-        Task UpdateAsync(EditRecordViewModel record);
+        Task UpdateAsync(Guid id, EditRecordViewModel record);
     }
 }

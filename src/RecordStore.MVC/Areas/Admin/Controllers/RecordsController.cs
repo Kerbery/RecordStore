@@ -9,10 +9,29 @@ namespace RecordStore.MVC.Areas.Admin.Controllers
     public class RecordsController : Controller
     {
         private readonly IRecordServices _recordServices;
+        private readonly IFormatServices _formatServices;
+        private readonly IReleaseServices _releaseServices;
+        private readonly IConditionServices _conditionServices;
+        private readonly ICategoryServices _categoryServices;
+        private readonly IGenreServices _genreServices;
+        private readonly IStyleServices _styleServices;
 
-        public RecordsController(IRecordServices recordServices)
+        public RecordsController(
+            IRecordServices recordServices,
+            IFormatServices formatServices,
+            IReleaseServices releaseServices,
+            IConditionServices conditionServices,
+            ICategoryServices categoryServices,
+            IGenreServices genreServices,
+            IStyleServices styleServices)
         {
             _recordServices = recordServices;
+            _formatServices = formatServices;
+            _releaseServices = releaseServices;
+            _conditionServices = conditionServices;
+            _categoryServices = categoryServices;
+            _genreServices = genreServices;
+            _styleServices = styleServices;
         }
 
         // GET: Admin/Records
@@ -39,8 +58,14 @@ namespace RecordStore.MVC.Areas.Admin.Controllers
         }
 
         // GET: Admin/Records/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            ViewData["Formats"] = (await _formatServices.GetAllAsync()).Select(f => f.AsDTO());
+            ViewData["Releases"] = (await _releaseServices.GetAllAsync()).Select(r => r.AsDTO());
+            ViewData["Conditions"] = (await _conditionServices.GetAllAsync()).Select(c => c.AsDTO());
+            ViewData["Categories"] = (await _categoryServices.GetAllAsync()).Select(c => c.AsDTO());
+            ViewData["Styles"] = (await _styleServices.GetAllAsync()).Select(s => s.AsDTO());
+            ViewData["Genres"] = (await _genreServices.GetAllAsync()).Select(s => s.AsDTO());
             return View();
         }
 
@@ -73,18 +98,26 @@ namespace RecordStore.MVC.Areas.Admin.Controllers
                 return NotFound();
             }
 
+            ViewData["Formats"] = (await _formatServices.GetAllAsync()).Select(f => f.AsDTO());
+            ViewData["Releases"] = (await _releaseServices.GetAllAsync()).Select(r => r.AsDTO());
+            ViewData["Conditions"] = (await _conditionServices.GetAllAsync()).Select(c => c.AsDTO());
+            ViewData["Categories"] = (await _categoryServices.GetAllAsync()).Select(c => c.AsDTO());
+            ViewData["Styles"] = (await _styleServices.GetAllAsync()).Select(s => s.AsDTO());
+            ViewData["Genres"] = (await _genreServices.GetAllAsync()).Select(s => s.AsDTO());
+            ViewData["Id"] = id;
+
             var recordViewModel = new EditRecordViewModel
             {
                 Title = record.Title,
                 Year = record.Year,
                 Price = record.Price,
                 Description = record.Description,
-                //Format= u.Format,
-                //Release = u.Release,
-                //RecordCondition = u.RecordCondition,
-                //Genres = u.Genres,
-                //Styles = u.Styles,
-                //Categories = u.Categories
+                FormatId = record.FormatId,
+                RecordConditionId = record.RecordConditionId,
+                ReleaseId = record.ReleaseId,
+                Genres = record.Genres.Select(g => g.Id),
+                Styles = record.Styles.Select(s => s.Id),
+                Categories = record.Categories.Select(c => c.Id),
             };
             return View(recordViewModel);
         }
@@ -98,7 +131,7 @@ namespace RecordStore.MVC.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _recordServices.UpdateAsync(editRecordViewModel);
+                await _recordServices.UpdateAsync(id, editRecordViewModel);
                 //try
                 //{
                 //    _context.Update(@record);
@@ -134,7 +167,7 @@ namespace RecordStore.MVC.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(@record);
+            return View(@record.AsViewModel());
         }
 
         // POST: Admin/Records/Delete/5
