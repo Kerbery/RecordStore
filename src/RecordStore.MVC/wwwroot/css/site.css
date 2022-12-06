@@ -42,3 +42,10 @@ main {
     background-image: url(https://cdnjs.cloudflare.com/ajax/libs/aui/6.0.1/aui/css/icons/aui-icon-close.png);
     z-index: 999999;
 }
+
+.adminSidebar {
+    width: 280px;
+    position: fixed;
+    z-index: 1000;
+    height: calc(100vh - 59px);
+}

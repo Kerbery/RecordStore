@@ -2,8 +2,8 @@
 @{
     Layout = "/Views/Shared/_Layout.cshtml";
 }
-<div class="wrapper d-flex align-items-stretch h-100">
-    <div class="d-flex flex-column flex-shrink-0 p-3 bg-light h-100" style="width: 280px;">
+<div class="wrapper d-flex align-items-stretch">
+    <div class="adminSidebar d-flex flex-column flex-shrink-0 p-3 bg-light">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
             <i class="bi bi-gear" style="font-size:32px"></i>
             <span class="fs-4 ps-2">Admin Tools</span>
@@ -57,8 +57,10 @@
         </div>
     </div>
 
-    <div class="w-100 p-3">
-        @RenderBody()
+    <div class="w-100" style="padding-left:280px;">
+        <div class="w-100 p-3">
+            @RenderBody()
+        </div>
     </div>
 </div>
 
