@@ -1,10 +1,4 @@
-﻿using RecordStore.Core.DTOs.Category;
-using RecordStore.Core.DTOs.Condition;
-using RecordStore.Core.DTOs.Format;
-using RecordStore.Core.DTOs.Genre;
-using RecordStore.Core.DTOs.Release;
-using RecordStore.Core.DTOs.Style;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace RecordStore.Core.ViewModels.Record
 {
@@ -18,18 +12,23 @@ namespace RecordStore.Core.ViewModels.Record
         [Range(0, int.MaxValue, ErrorMessage = "Please enter a value bigger than {1}")]
         public int Year { get; set; }
 
-        [MinLength(256, ErrorMessage = "The {0} must be at least {1} characters long.")]
+        [Range(0, int.MaxValue, ErrorMessage = "Please enter a value bigger than {1}")]
         public double Price { get; set; }
 
-        [MinLength(256, ErrorMessage = "The {0} must be at least {1} characters long.")]
+        [MaxLength(256, ErrorMessage = "The {0} must be at max {1} characters long.")]
         public string? Description { get; set; }
-        public CreateFormatDTO Format { get; set; }
-        public CreateReleaseDTO Release { get; set; }
-        public CreateConditionDTO RecordCondition { get; set; }
-        public ICollection<CreateCategoryDTO> Categories { get; set; }
-        //public ICollection<CreateArtistDTO> Artists { get; set; }
-        public ICollection<CreateGenreDTO> Genres { get; set; }
-        public ICollection<CreateStyleDTO> Styles { get; set; }
-        //public ICollection<Photo> Photos { get; set; }
+
+        [Display(Name = "Format")]
+        public Guid FormatId { get; set; }
+
+        [Display(Name = "Release")]
+        public Guid ReleaseId { get; set; }
+
+        [Display(Name = "Record Condition")]
+        public Guid RecordConditionId { get; set; }
+        public IEnumerable<Guid>? Categories { get; set; }
+        //public IEnumerable<Guid> Artists { get; set; }
+        public IEnumerable<Guid>? Genres { get; set; }
+        public IEnumerable<Guid>? Styles { get; set; }
     }
 }

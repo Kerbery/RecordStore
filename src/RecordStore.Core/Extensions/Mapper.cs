@@ -51,16 +51,17 @@ namespace RecordStore.Core.Extensions
             return new GetRecordViewModel
             {
                 Id = record.Id,
+                CreateDate = record.CreateDate,
                 Title = record.Title,
                 Year = record.Year,
                 Price = record.Price,
                 Description = record.Description,
-                //Format= u.Format,
-                //Release = u.Release,
-                //RecordCondition = u.RecordCondition,
-                //Genres = u.Genres,
-                //Styles = u.Styles,
-                //Categories = u.Categories
+                Format = record.Format.AsDTO(),
+                Release = record.Release.AsDTO(),
+                RecordCondition = record.RecordCondition.AsDTO(),
+                Genres = record.Genres.Select(g => g.AsDTO()),
+                Styles = record.Styles.Select(s => s.AsDTO()),
+                Categories = record.Categories.Select(c => c.AsDTO()),
             };
         }
 
@@ -83,6 +84,5 @@ namespace RecordStore.Core.Extensions
         {
             return new RoleViewModel { Id = role.Id, Name = role.Name, IsSelected = isSelected };
         }
-
     }
 }
