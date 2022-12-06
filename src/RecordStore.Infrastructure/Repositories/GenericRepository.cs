@@ -17,24 +17,47 @@ namespace RecordStore.Infrastructure.Repositories
             _table = _context.Set<T>();
         }
 
-        public async Task<T> GetAsync(Guid id)
+        public async Task<T> GetAsync(Guid id, params Expression<Func<T, object>>[] includes)
         {
-            return await _table.FindAsync(id.ToString());
+            var query = _table.AsQueryable();
+
+            if (includes is not null)
+            {
+                query = includes.Aggregate(query,
+                          (current, include) => current.Include(include));
+            }
+
+            return await query.FirstAsync(e => e.Id == id);
         }
 
-        public async Task<T> GetAsync(Expression<Func<T, bool>> filter)
+        public async Task<T> GetAsync(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includes)
         {
-            return await _table.Where(filter).FirstOrDefaultAsync();
+            return await _table.Where(filter).FirstAsync();
         }
 
-        public async Task<IReadOnlyCollection<T>> GetAllAsync()
+        public async Task<IReadOnlyCollection<T>> GetAllAsync(params Expression<Func<T, object>>[] includes)
         {
-            return await _table.ToListAsync();
+            var query = _table.AsQueryable();
+
+            if (includes is not null)
+        {
+                query = includes.Aggregate(query,
+                          (current, include) => current.Include(include));
+            }
+
+            return await query.ToListAsync();
         }
 
-        public async Task<IReadOnlyCollection<T>> GetAllAsync(Expression<Func<T, bool>> filter)
+        public async Task<IReadOnlyCollection<T>> GetAllAsync(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includes)
         {
-            return await _table.Where(filter).ToListAsync();
+            var query = _table.AsQueryable();
+
+            if (includes is not null)
+        {
+                query = includes.Aggregate(query,
+                          (current, include) => current.Include(include));
+            }
+            return await query.Where(filter).ToListAsync();
         }
 
         public async Task CreateAsync(T entity)
