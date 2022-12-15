@@ -1,0 +1,86 @@
+﻿@model RecordStore.Core.ViewModels.Record.GetRecordViewModel
+
+<h4>Record</h4>
+<hr />
+<dl class="row">
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Photos)
+    </dt>
+    <dd class="col-sm-10">
+        <div class="row">
+            @foreach (var photo in Model.Photos)
+            {
+                var srcAddress = "/Images/Temp/" + photo;
+                <div class="photo_thumbnail col-md-2">
+                    <img class="preview_thumbnail img-thumbnail" src="@srcAddress" />
+                </div>
+            }
+        </div>
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Title)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Title)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Year)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Year)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Price)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Price)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Description)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Description)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.CreateDate)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.CreateDate)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Release)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Release)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Format)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Format)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.RecordCondition)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.RecordCondition)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Categories)
+    </dt>
+    <dd class="col-sm-10">
+        @string.Join(", ", Model.Categories.Select(c => c.Name))
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Genres)
+    </dt>
+    <dd class="col-sm-10">
+        @string.Join(", ", Model.Genres.Select(g => g.Name))
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Styles)
+    </dt>
+    <dd class="col-sm-10">
+        @string.Join(", ", Model.Styles.Select(s => s.Name))
+    </dd>
+</dl>
