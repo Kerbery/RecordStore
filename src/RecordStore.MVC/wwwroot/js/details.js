@@ -1,4 +1,5 @@
 var cachedCategoryOptions = null;
+var cachedCategories = null;
 
 $(document).ready(() => {
     $('#CategoryTableContainer').jtable({
@@ -16,7 +17,8 @@ $(document).ready(() => {
             },
             name: {
                 title: 'Name',
-                width: '45%'
+                width: '45%',
+                inputClass: 'validate[required,minSize[3]],maxSize[100]]'
             },
             parentCategoryId: {
                 title: 'Parent Category',
@@ -45,8 +47,42 @@ $(document).ready(() => {
             },
             position: {
                 title: 'Position',
-                width: '10%'
+                width: '10%',
+                defaultValue: 0,
             }
+        },
+        recordAdded: (event, data) => {
+            cachedCategories = [...cachedCategories, data.record];
+        },
+        recordsLoaded: (event, data) => {
+            cachedCategories = [...data.records];
+        },
+        recordDeleted: (event, data) => {
+            const childCategories = cachedCategories.filter(c => c.parentCategoryId === data.record?.id);
+
+            for (var category of childCategories) {
+                const { parentCategoryId, ...rest } = category;
+
+                $('#CategoryTableContainer').jtable('updateRecord', {
+                    record: {
+                        parentCategoryId: null,
+                        ...rest
+                    }
+                });
+            }
+        },
+        //Initialize validation logic when a form is created
+        formCreated: function (event, data) {
+            data.form.validationEngine();
+        },
+        //Validate form when it is being submitted
+        formSubmitting: function (event, data) {
+            return data.form.validationEngine('validate');
+        },
+        //Dispose validation logic when form is closed
+        formClosed: function (event, data) {
+            data.form.validationEngine('hide');
+            data.form.validationEngine('detach');
         }
     });
     $('#CategoryTableContainer').jtable('load');
@@ -67,8 +103,22 @@ $(document).ready(() => {
             },
             name: {
                 title: 'Name',
-                width: '40%'
+                width: '40%',
+                inputClass: 'validate[required,minSize[3]],maxSize[100]]'
             }
+        },
+        //Initialize validation logic when a form is created
+        formCreated: function (event, data) {
+            data.form.validationEngine();
+        },
+        //Validate form when it is being submitted
+        formSubmitting: function (event, data) {
+            return data.form.validationEngine('validate');
+        },
+        //Dispose validation logic when form is closed
+        formClosed: function (event, data) {
+            data.form.validationEngine('hide');
+            data.form.validationEngine('detach');
         }
     });
     $('#ReleaseTableContainer').jtable('load');
@@ -89,8 +139,22 @@ $(document).ready(() => {
             },
             name: {
                 title: 'Name',
-                width: '40%'
+                width: '40%',
+                inputClass: 'validate[required,minSize[3]],maxSize[100]]'
             }
+        },
+        //Initialize validation logic when a form is created
+        formCreated: function (event, data) {
+            data.form.validationEngine();
+        },
+        //Validate form when it is being submitted
+        formSubmitting: function (event, data) {
+            return data.form.validationEngine('validate');
+        },
+        //Dispose validation logic when form is closed
+        formClosed: function (event, data) {
+            data.form.validationEngine('hide');
+            data.form.validationEngine('detach');
         }
     });
     $('#GenreTableContainer').jtable('load');
@@ -111,7 +175,8 @@ $(document).ready(() => {
             },
             name: {
                 title: 'Name',
-                width: '40%'
+                width: '40%',
+                inputClass: 'validate[required,minSize[3]],maxSize[100]]'
             }
         }
     });
@@ -133,8 +198,22 @@ $(document).ready(() => {
             },
             name: {
                 title: 'Name',
-                width: '40%'
+                width: '40%',
+                inputClass: 'validate[required,minSize[3]],maxSize[100]]'
             }
+        },
+        //Initialize validation logic when a form is created
+        formCreated: function (event, data) {
+            data.form.validationEngine();
+        },
+        //Validate form when it is being submitted
+        formSubmitting: function (event, data) {
+            return data.form.validationEngine('validate');
+        },
+        //Dispose validation logic when form is closed
+        formClosed: function (event, data) {
+            data.form.validationEngine('hide');
+            data.form.validationEngine('detach');
         }
     });
     $('#FormatTableContainer').jtable('load');
@@ -155,8 +234,22 @@ $(document).ready(() => {
             },
             name: {
                 title: 'Name',
-                width: '40%'
+                width: '40%',
+                inputClass: 'validate[required,minSize[3]],maxSize[100]]'
             }
+        },
+        //Initialize validation logic when a form is created
+        formCreated: function (event, data) {
+            data.form.validationEngine();
+        },
+        //Validate form when it is being submitted
+        formSubmitting: function (event, data) {
+            return data.form.validationEngine('validate');
+        },
+        //Dispose validation logic when form is closed
+        formClosed: function (event, data) {
+            data.form.validationEngine('hide');
+            data.form.validationEngine('detach');
         }
     });
     $('#ConditionTableContainer').jtable('load');
