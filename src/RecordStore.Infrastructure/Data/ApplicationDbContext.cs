@@ -31,8 +31,22 @@ namespace RecordStore.Infrastructure.Data
 
             builder.Entity<Role>()
                 .HasData(
-                    new Role() { Id = Guid.Parse("F7423EB5-E11B-4A66-9D04-D64A464148BB"), Name = "Admin", NormalizedName = "Admin".ToUpper(), CreateDate = createDate },
-                    new Role() { Id = Guid.Parse("22747656-AA1D-4260-93B3-F6767F35EC6D"), Name = "User", NormalizedName = "User".ToUpper(), CreateDate = createDate }
+                    new Role()
+                    {
+                        Id = Guid.Parse("F7423EB5-E11B-4A66-9D04-D64A464148BB"),
+                        ConcurrencyStamp = "F9770056-5580-4CD9-AFFA-4764FE94C01D",
+                        Name = "Admin",
+                        NormalizedName = "Admin".ToUpper(),
+                        CreateDate = createDate
+                    },
+                    new Role()
+                    {
+                        Id = Guid.Parse("22747656-AA1D-4260-93B3-F6767F35EC6D"),
+                        ConcurrencyStamp = "599CB2A4-B261-4ECD-A428-B0DC42A64C04",
+                        Name = "User",
+                        NormalizedName = "User".ToUpper(),
+                        CreateDate = createDate
+                    }
                 );
 
             var hasher = new PasswordHasher<ApplicationUser>();
@@ -43,7 +57,8 @@ namespace RecordStore.Infrastructure.Data
                 NormalizedUserName = "Admin",
                 Email = "admin@mail.com",
                 NormalizedEmail = "admin@mail.com".ToUpper(),
-                SecurityStamp = Guid.NewGuid().ToString(),
+                SecurityStamp = "14f5df95-5b25-4771-b981-7c0eda6a594f",
+                ConcurrencyStamp = "be938583-cf6d-4791-9fc6-6243cce460c4",
                 CreateDate = createDate
             };
             adminUser.PasswordHash = hasher.HashPassword(adminUser, "Pa$$w0rd");
