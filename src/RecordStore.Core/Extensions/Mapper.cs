@@ -9,6 +9,7 @@ using RecordStore.Core.Entities.Identity;
 using RecordStore.Core.Entities.Models;
 using RecordStore.Core.ViewModels.Category;
 using RecordStore.Core.ViewModels.Genre;
+using RecordStore.Core.ViewModels.Photo;
 using RecordStore.Core.ViewModels.Record;
 using RecordStore.Core.ViewModels.Role;
 using RecordStore.Core.ViewModels.Style;
@@ -65,6 +66,7 @@ namespace RecordStore.Core.Extensions
                 Genres = record.Genres.Select(g => g.AsDTO()),
                 Styles = record.Styles.Select(s => s.AsDTO()),
                 Categories = record.Categories.Select(c => c.AsDTO()),
+                Photos = record.Photos.OrderBy(p => p.Position).Select(p => p.Filename)
             };
         }
 
@@ -101,6 +103,11 @@ namespace RecordStore.Core.Extensions
         public static CategoryViewModel AsViewModel(this Category category, bool isSelected = false)
         {
             return new CategoryViewModel { Id = category.Id, Name = category.Name, IsSelected = isSelected };
+        }
+
+        public static PhotoViewModel AsViewModel(this Photo photo)
+        {
+            return new PhotoViewModel { Id = photo.Id, Filename = photo.Filename, Position = photo.Position };
         }
     }
 }

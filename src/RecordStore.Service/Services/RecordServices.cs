@@ -11,15 +11,18 @@ namespace RecordStore.Service.Services
         private readonly IRepository<Genre> _genreRepository;
         private readonly IRepository<Style> _styleRepository;
         private readonly IRepository<Category> _categoryRepository;
+        private readonly IRepository<Photo> _photoRepository;
         public RecordServices(
             IRepository<Record> recordRepository,
             IRepository<Genre> genreRepository,
             IRepository<Style> styleRepository,
-            IRepository<Category> categoryRepository) : base(recordRepository)
+            IRepository<Category> categoryRepository,
+            IRepository<Photo> photoRepository) : base(recordRepository)
         {
             _genreRepository = genreRepository;
             _styleRepository = styleRepository;
             _categoryRepository = categoryRepository;
+            _photoRepository = photoRepository;
         }
 
         public new async Task<Record> GetAsync(Guid id)
@@ -31,7 +34,8 @@ namespace RecordStore.Service.Services
                 r => r.Genres,
                 r => r.Release,
                 r => r.Styles,
-                r => r.Categories);
+                r => r.Categories,
+                r => r.Photos);
         }
 
         public new async Task<IEnumerable<Record>> GetAllAsync()
@@ -42,7 +46,8 @@ namespace RecordStore.Service.Services
                 r => r.Genres,
                 r => r.Release,
                 r => r.Styles,
-                r => r.Categories);
+                r => r.Categories,
+                r => r.Photos);
         }
 
         public async Task<IdentityResult> CreateAsync(CreateRecordViewModel createRecordViewModel)
@@ -64,7 +69,7 @@ namespace RecordStore.Service.Services
                 Styles = (ICollection<Style>)await _styleRepository.GetAllAsync(s => selectedStyles.Contains(s.Id)),
                 Categories = (ICollection<Category>)await _categoryRepository.GetAllAsync(c => selectedCategories.Contains(c.Id)),
                 //Artists = createRecordViewModel.Artists,
-                //Photos = createRecordViewModel.Photos
+                Photos = createRecordViewModel.Photos.Select((fileName, index) => new Photo { Filename = fileName, Position = index }).ToList(),
             };
 
             await CreateAsync(record);
@@ -90,7 +95,13 @@ namespace RecordStore.Service.Services
             existingRecord.Styles = (ICollection<Style>)await _styleRepository.GetAllAsync(s => selectedStyles.Contains(s.Id));
             existingRecord.Categories = (ICollection<Category>)await _categoryRepository.GetAllAsync(c => selectedCategories.Contains(c.Id));
             //existingRecord.Artists = editRecordViewModel.Artists;
-            //existingRecord.Photos = editRecordViewModel.Photos
+            existingRecord.Photos = (ICollection<Photo>)await _photoRepository.GetAllAsync(p => editRecordViewModel.Photos.Contains(p.Filename));
+
+            existingRecord.Photos = existingRecord.Photos.Select(photo =>
+            {
+                photo.Position = editRecordViewModel.Photos.IndexOf(photo.Filename);
+                return photo;
+            }).ToList();
 
             await UpdateAsync(existingRecord);
         }

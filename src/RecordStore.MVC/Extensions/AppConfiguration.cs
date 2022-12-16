@@ -21,6 +21,7 @@ namespace RecordStore.MVC.Extensions
             services.AddScoped<IConditionServices, ConditionServices>();
             services.AddScoped<IFormatServices, FormatServices>();
             services.AddScoped<IReleaseServices, ReleaseServices>();
+            services.AddScoped<IPhotoServices, PhotoServices>();
 
             return services;
         }

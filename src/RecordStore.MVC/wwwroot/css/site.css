@@ -1,11 +1,11 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
@@ -43,9 +43,71 @@ main {
     z-index: 999999;
 }
 
+.photo-tumbnail {
+    width: 120px;
+    height: 120px;
+}
+
+.photo-tumbnail img {
+    width: 100%;
+    height: 100%;
+}
+
+.thumbnail-close {
+    position: absolute;
+    z-index: 1;
+    top: 8px;
+    right: 8px;
+    background-color: red;
+}
+
 .adminSidebar {
     width: 280px;
     position: fixed;
     z-index: 1000;
     height: calc(100vh - 59px);
+}
+
+.preview_thumbnail {
+    cursor: pointer;
+}
+
+.preview_background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 10000;
+    overflow-y: hidden;
+}
+
+.preview_dialog {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    text-align: center;
+}
+
+.preview_dialog img {
+    position: relative;
+    top: 50%;
+    transform: perspective(1px) translateY(-50%);
+    max-width: 100%;
+    max-height: 100%;
+}
+
+@media (min-width: 30em) {
+    .filepond--item {
+        width: calc(50% - 0.5em);
+    }
+}
+
+@media (min-width: 50em) {
+    .filepond--item {
+        width: calc(25% - 0.5em);
+    }
 }

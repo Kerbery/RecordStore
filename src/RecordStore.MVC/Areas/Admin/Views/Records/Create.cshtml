@@ -15,12 +15,16 @@
 
 <h4>Record</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-8 mx-auto">
+            <input id="images-input" type="file" name="Photos" class="filepond" accept=".jpg, .png, image/jpeg, image/png" multiple>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
             <div class="form-group mb-3">
                 <label asp-for="Title" class="control-label"></label>
                 <input asp-for="Title" class="form-control" />
@@ -42,7 +46,7 @@
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="form-group mb-3">
                 <label asp-for="RecordConditionId" class="control-label"></label>
                 <select class="form-select" asp-for="RecordConditionId" asp-items="@(new SelectList(ViewData["Conditions"] as IEnumerable<GetConditionDTO>, nameof(GetConditionDTO.Id), nameof(GetConditionDTO.Name)))">
@@ -65,8 +69,9 @@
                 <span asp-validation-for="ReleaseId" class="text-danger"></span>
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-md-4">
-
             <div class="form-group mb-3">
                 <label asp-for="Genres" class="control-label"></label>
                 @for (int i = 0; i < Model.Genres.Count; i++)
@@ -112,18 +117,18 @@
                 }
                 <span asp-validation-for="Categories" class="text-danger"></span>
             </div>
-            <input type="hidden" asp-for=@ViewData["Id"] />
         </div>
-            </div>
-            <div class="form-group mb-3">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    </div>
+    <div class="form-group mb-3">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }    
+    @{
+        await Html.RenderPartialAsync("_FilePondScripsPartial");
+    }
 }

@@ -1,8 +1,7 @@
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using RecordStore.Core.Entities.Identity;
-using RecordStore.Core.Interfaces;
 using RecordStore.Infrastructure.Data;
 using RecordStore.MVC.Extensions;
 
@@ -40,7 +39,12 @@ else
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
+app.UseStaticFiles()
+    .UseStaticFiles(new StaticFileOptions
+    {
+        FileProvider = new PhysicalFileProvider(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "RecordStore\\Images")),
+        RequestPath = "/Images"
+    });
 
 app.UseRouting();
 
