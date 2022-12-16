@@ -47,6 +47,10 @@ namespace RecordStore.Service.Services
 
         public async Task<IdentityResult> CreateAsync(CreateRecordViewModel createRecordViewModel)
         {
+            var selectedGenres = createRecordViewModel.Genres.Where(g => g.IsSelected).Select(g => g.Id);
+            var selectedStyles = createRecordViewModel.Styles.Where(g => g.IsSelected).Select(g => g.Id);
+            var selectedCategories = createRecordViewModel.Categories.Where(g => g.IsSelected).Select(g => g.Id);
+
             var record = new Record
             {
                 Title = createRecordViewModel.Title,
@@ -56,9 +60,9 @@ namespace RecordStore.Service.Services
                 FormatId = createRecordViewModel.FormatId,
                 ReleaseId = createRecordViewModel.ReleaseId,
                 RecordConditionId = createRecordViewModel.RecordConditionId,
-                Genres = (ICollection<Genre>)await _genreRepository.GetAllAsync(g => (createRecordViewModel.Genres ?? new List<Guid>()).Contains(g.Id)),
-                Styles = (ICollection<Style>)await _styleRepository.GetAllAsync(s => (createRecordViewModel.Styles ?? new List<Guid>()).Contains(s.Id)),
-                Categories = (ICollection<Category>)await _categoryRepository.GetAllAsync(c => (createRecordViewModel.Categories ?? new List<Guid>()).Contains(c.Id)),
+                Genres = (ICollection<Genre>)await _genreRepository.GetAllAsync(g => selectedGenres.Contains(g.Id)),
+                Styles = (ICollection<Style>)await _styleRepository.GetAllAsync(s => selectedStyles.Contains(s.Id)),
+                Categories = (ICollection<Category>)await _categoryRepository.GetAllAsync(c => selectedCategories.Contains(c.Id)),
                 //Artists = createRecordViewModel.Artists,
                 //Photos = createRecordViewModel.Photos
             };
@@ -69,6 +73,10 @@ namespace RecordStore.Service.Services
 
         public async Task UpdateAsync(Guid id, EditRecordViewModel editRecordViewModel)
         {
+            var selectedGenres = editRecordViewModel.Genres.Where(g => g.IsSelected).Select(g => g.Id);
+            var selectedStyles = editRecordViewModel.Styles.Where(g => g.IsSelected).Select(g => g.Id);
+            var selectedCategories = editRecordViewModel.Categories.Where(g => g.IsSelected).Select(g => g.Id);
+
             var existingRecord = await _repository.GetAsync(id, r => r.Genres, r => r.Styles, r => r.Categories);
 
             existingRecord.Title = editRecordViewModel.Title;
@@ -78,9 +86,9 @@ namespace RecordStore.Service.Services
             existingRecord.FormatId = editRecordViewModel.FormatId;
             existingRecord.ReleaseId = editRecordViewModel.ReleaseId;
             existingRecord.RecordConditionId = editRecordViewModel.RecordConditionId;
-            existingRecord.Genres = (ICollection<Genre>)await _genreRepository.GetAllAsync(g => (editRecordViewModel.Genres ?? new List<Guid>()).Contains(g.Id));
-            existingRecord.Styles = (ICollection<Style>)await _styleRepository.GetAllAsync(s => (editRecordViewModel.Styles ?? new List<Guid>()).Contains(s.Id));
-            existingRecord.Categories = (ICollection<Category>)await _categoryRepository.GetAllAsync(c => (editRecordViewModel.Categories ?? new List<Guid>()).Contains(c.Id));
+            existingRecord.Genres = (ICollection<Genre>)await _genreRepository.GetAllAsync(g => selectedGenres.Contains(g.Id));
+            existingRecord.Styles = (ICollection<Style>)await _styleRepository.GetAllAsync(s => selectedStyles.Contains(s.Id));
+            existingRecord.Categories = (ICollection<Category>)await _categoryRepository.GetAllAsync(c => selectedCategories.Contains(c.Id));
             //existingRecord.Artists = editRecordViewModel.Artists;
             //existingRecord.Photos = editRecordViewModel.Photos
 

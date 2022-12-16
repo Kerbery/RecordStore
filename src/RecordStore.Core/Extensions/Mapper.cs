@@ -7,8 +7,11 @@ using RecordStore.Core.DTOs.Release;
 using RecordStore.Core.DTOs.Style;
 using RecordStore.Core.Entities.Identity;
 using RecordStore.Core.Entities.Models;
+using RecordStore.Core.ViewModels.Category;
+using RecordStore.Core.ViewModels.Genre;
 using RecordStore.Core.ViewModels.Record;
 using RecordStore.Core.ViewModels.Role;
+using RecordStore.Core.ViewModels.Style;
 using RecordStore.Core.ViewModels.User;
 
 namespace RecordStore.Core.Extensions
@@ -83,6 +86,21 @@ namespace RecordStore.Core.Extensions
         public static RoleViewModel AsViewModel(this Role role, bool isSelected = false)
         {
             return new RoleViewModel { Id = role.Id, Name = role.Name, IsSelected = isSelected };
+        }
+
+        public static GenreViewModel AsViewModel(this Genre genre, bool isSelected = false)
+        {
+            return new GenreViewModel { Id = genre.Id, Name = genre.Name, IsSelected = isSelected };
+        }
+
+        public static StyleViewModel AsViewModel(this Style style, bool isSelected = false)
+        {
+            return new StyleViewModel { Id = style.Id, Name = style.Name, IsSelected = isSelected };
+        }
+
+        public static CategoryViewModel AsViewModel(this Category category, bool isSelected = false)
+        {
+            return new CategoryViewModel { Id = category.Id, Name = category.Name, IsSelected = isSelected };
         }
     }
 }

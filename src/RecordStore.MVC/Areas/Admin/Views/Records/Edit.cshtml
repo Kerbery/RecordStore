@@ -64,23 +64,47 @@
         <div class="col-md-4">
             <div class="form-group mb-3">
                 <label asp-for="Genres" class="control-label"></label>
-                <select class="form-select" size="3" asp-for="Genres" asp-items="@(new SelectList(ViewData["Genres"] as IEnumerable<GetGenreDTO>, nameof(GetGenreDTO.Id), nameof(GetGenreDTO.Name)))">
-                    <option value="">--Select--</option>
-                </select>
+                @for (int i = 0; i < Model.Genres.Count; i++)
+                {
+                    <div class="form-check m-1">
+                        <input type="hidden" asp-for="@Model.Genres[i].Id" />
+                        <input type="hidden" asp-for="@Model.Genres[i].Name" />
+                        <input type="checkbox" asp-for="@Model.Genres[i].IsSelected" class="form-check-input" />
+                        <label asp-for="@Model.Genres[i].IsSelected" class="form-check-label">
+                            @Model.Genres[i].Name
+                        </label>
+                    </div>
+                }
                 <span asp-validation-for="Genres" class="text-danger"></span>
             </div>
             <div class="form-group mb-3">
                 <label asp-for="Styles" class="control-label"></label>
-                <select class="form-select" size="3" asp-for="Styles" asp-items="@(new SelectList(ViewData["Styles"] as IEnumerable<GetStyleDTO>, nameof(GetStyleDTO.Id), nameof(GetStyleDTO.Name)))">
-                    <option value="">--Select--</option>
-                </select>
+                @for (int i = 0; i < Model.Styles.Count; i++)
+                {
+                    <div class="form-check m-1">
+                        <input type="hidden" asp-for="@Model.Styles[i].Id" />
+                        <input type="hidden" asp-for="@Model.Styles[i].Name" />
+                        <input type="checkbox" asp-for="@Model.Styles[i].IsSelected" class="form-check-input" />
+                        <label asp-for="@Model.Styles[i].IsSelected" class="form-check-label">
+                            @Model.Styles[i].Name
+                        </label>
+                    </div>
+                }
                 <span asp-validation-for="Styles" class="text-danger"></span>
             </div>
             <div class="form-group mb-3">
                 <label asp-for="Categories" class="control-label"></label>
-                <select class="form-select" size="3" asp-for="Categories" asp-items="@(new SelectList(ViewData["Categories"] as IEnumerable<GetCategoryDTO>, nameof(GetCategoryDTO.Id), nameof(GetCategoryDTO.Name)))">
-                    <option value="">--Select--</option>
-                </select>
+            @for (int i = 0; i < Model.Categories.Count; i++)
+            {
+                <div class="form-check m-1">
+                    <input type="hidden" asp-for="@Model.Categories[i].Id" />
+                    <input type="hidden" asp-for="@Model.Categories[i].Name" />
+                    <input type="checkbox" asp-for="@Model.Categories[i].IsSelected" class="form-check-input" />
+                    <label asp-for="@Model.Categories[i].IsSelected" class="form-check-label">
+                        @Model.Categories[i].Name
+                    </label>
+                </div>
+            }
                 <span asp-validation-for="Categories" class="text-danger"></span>
             </div>
             <input type="hidden" asp-for=@ViewData["Id"] />

@@ -72,13 +72,13 @@
                     @Html.DisplayFor(modelItem => item.RecordCondition)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Categories)
+                    @string.Join(", ", item.Categories.Select(c => c.Name))
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Genres)
+                    @string.Join(", ", item.Genres.Select(g => g.Name))
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Styles)
+                    @string.Join(", ", item.Styles.Select(s => s.Name))
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

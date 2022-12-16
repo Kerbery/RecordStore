@@ -63,10 +63,13 @@ namespace RecordStore.MVC.Areas.Admin.Controllers
             ViewData["Formats"] = (await _formatServices.GetAllAsync()).Select(f => f.AsDTO());
             ViewData["Releases"] = (await _releaseServices.GetAllAsync()).Select(r => r.AsDTO());
             ViewData["Conditions"] = (await _conditionServices.GetAllAsync()).Select(c => c.AsDTO());
-            ViewData["Categories"] = (await _categoryServices.GetAllAsync()).Select(c => c.AsDTO());
-            ViewData["Styles"] = (await _styleServices.GetAllAsync()).Select(s => s.AsDTO());
-            ViewData["Genres"] = (await _genreServices.GetAllAsync()).Select(s => s.AsDTO());
-            return View();
+            var record = new CreateRecordViewModel
+            {
+                Genres = (await _genreServices.GetAllAsync()).Select(g => g.AsViewModel()).ToList(),
+                Styles = (await _styleServices.GetAllAsync()).Select(s => s.AsViewModel()).ToList(),
+                Categories = (await _categoryServices.GetAllAsync()).Select(g => g.AsViewModel()).ToList()
+            };
+            return View(record);
         }
 
         // POST: Admin/Records/Create
@@ -115,9 +118,10 @@ namespace RecordStore.MVC.Areas.Admin.Controllers
                 FormatId = record.FormatId,
                 RecordConditionId = record.RecordConditionId,
                 ReleaseId = record.ReleaseId,
-                Genres = record.Genres.Select(g => g.Id),
-                Styles = record.Styles.Select(s => s.Id),
-                Categories = record.Categories.Select(c => c.Id),
+                Genres = (await _genreServices.GetAllAsync()).Select(g => g.AsViewModel(record.Genres.Select(g => g.Id).Contains(g.Id))).ToList(),
+                Styles = (await _styleServices.GetAllAsync()).Select(s => s.AsViewModel(record.Styles.Select(s => s.Id).Contains(s.Id))).ToList(),
+                Categories = (await _categoryServices.GetAllAsync()).Select(c => c.AsViewModel(record.Categories.Select(c => c.Id).Contains(c.Id))).ToList(),
+                Photos = record.Photos.OrderBy(p => p.Position).Select(p => p.Filename).ToList()
             };
             return View(recordViewModel);
         }

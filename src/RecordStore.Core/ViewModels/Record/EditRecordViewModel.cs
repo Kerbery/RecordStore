@@ -1,3 +1,6 @@
+﻿using RecordStore.Core.ViewModels.Category;
+using RecordStore.Core.ViewModels.Genre;
+using RecordStore.Core.ViewModels.Style;
 ﻿using System.ComponentModel.DataAnnotations;
 
 namespace RecordStore.Core.ViewModels.Record
@@ -26,9 +29,9 @@ namespace RecordStore.Core.ViewModels.Record
 
         [Display(Name = "Record Condition")]
         public Guid RecordConditionId { get; set; }
-        public IEnumerable<Guid>? Categories { get; set; }
-        //public IEnumerable<Guid> Artists { get; set; }
-        public IEnumerable<Guid>? Genres { get; set; }
-        public IEnumerable<Guid>? Styles { get; set; }
+        public List<CategoryViewModel> Categories { get; set; } = new List<CategoryViewModel>();
+        //public IEnumerable<Guid> Artists { get; set; } = new List<Guid>();
+        public List<GenreViewModel> Genres { get; set; } = new List<GenreViewModel>();
+        public List<StyleViewModel> Styles { get; set; } = new List<StyleViewModel>();
     }
 }
