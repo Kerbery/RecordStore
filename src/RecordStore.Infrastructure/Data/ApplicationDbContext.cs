@@ -110,6 +110,11 @@ namespace RecordStore.Infrastructure.Data
             builder.Entity<Record>()
                 .HasMany(r => r.Categories)
                 .WithMany(c => c.Records);
+
+            builder.Entity<Category>()
+                .HasOne(c => c.ParentCategory)
+                .WithMany(p => p.ChildCategories)
+                .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

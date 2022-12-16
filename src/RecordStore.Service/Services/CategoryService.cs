@@ -9,6 +9,17 @@ namespace RecordStore.Service.Services
     {
         public CategoryServices(IRepository<Category> categoryRepository) : base(categoryRepository) { }
 
+        public new async Task DeleteAsync(Guid id)
+        {
+            var childCategories = await _repository.GetAllAsync(c => c.ParentCategoryId == id);
+            foreach (var category in childCategories)
+            {
+                category.ParentCategoryId = null;
+            }
+
+            await _repository.RemoveAsync(id);
+        }
+
         public async Task<Category> CreateAsync(CreateCategoryDTO createCategoryDTO)
         {
             var category = new Category
