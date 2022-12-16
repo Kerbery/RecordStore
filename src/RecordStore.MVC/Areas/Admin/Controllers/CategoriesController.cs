@@ -30,7 +30,7 @@ namespace RecordStore.MVC.Areas.Admin.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<GetCategoryDTO>> GetAsync(Guid id)
         {
-            var category = (await _categoryServices.GetAsync(id)).AsDTO();
+            var category = (await _categoryServices.GetAsync(id))?.AsDTO();
 
             return Ok(category);
         }

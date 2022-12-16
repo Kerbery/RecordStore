@@ -19,7 +19,7 @@ namespace RecordStore.Service.Services
             return await _repository.GetAllAsync();
         }
 
-        public async Task<T> GetAsync(Guid id)
+        public async Task<T?> GetAsync(Guid id)
         {
             return await _repository.GetAsync(id);
         }

@@ -17,7 +17,7 @@ namespace RecordStore.Infrastructure.Repositories
             _table = _context.Set<T>();
         }
 
-        public async Task<T> GetAsync(Guid id, params Expression<Func<T, object>>[] includes)
+        public async Task<T?> GetAsync(Guid id, params Expression<Func<T, object>>[] includes)
         {
             var query = _table.AsQueryable();
 
@@ -27,12 +27,12 @@ namespace RecordStore.Infrastructure.Repositories
                           (current, include) => current.Include(include));
             }
 
-            return await query.FirstAsync(e => e.Id == id);
+            return await query.FirstOrDefaultAsync(e => e.Id == id);
         }
 
-        public async Task<T> GetAsync(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includes)
+        public async Task<T?> GetAsync(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includes)
         {
-            return await _table.Where(filter).FirstAsync();
+            return await _table.Where(filter).FirstOrDefaultAsync();
         }
 
         public async Task<IReadOnlyCollection<T>> GetAllAsync(params Expression<Func<T, object>>[] includes)
@@ -40,7 +40,7 @@ namespace RecordStore.Infrastructure.Repositories
             var query = _table.AsQueryable();
 
             if (includes is not null)
-        {
+            {
                 query = includes.Aggregate(query,
                           (current, include) => current.Include(include));
             }
@@ -53,7 +53,7 @@ namespace RecordStore.Infrastructure.Repositories
             var query = _table.AsQueryable();
 
             if (includes is not null)
-        {
+            {
                 query = includes.Aggregate(query,
                           (current, include) => current.Include(include));
             }
@@ -75,8 +75,11 @@ namespace RecordStore.Infrastructure.Repositories
         public async Task RemoveAsync(Guid id)
         {
             var entity = await _table.FindAsync(id);
-            _table.Remove(entity);
-            await _context.SaveChangesAsync();
+            if (entity is not null)
+            {
+                _table.Remove(entity);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

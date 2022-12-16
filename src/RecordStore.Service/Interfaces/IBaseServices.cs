@@ -7,7 +7,7 @@ namespace RecordStore.Service.Interfaces
         Task<T> CreateAsync(T entity);
         Task DeleteAsync(Guid id);
         Task<IEnumerable<T>> GetAllAsync();
-        Task<T> GetAsync(Guid id);
+        Task<T?> GetAsync(Guid id);
         Task UpdateAsync(T entity);
     }
 }

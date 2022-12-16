@@ -25,7 +25,7 @@ namespace RecordStore.Service.Services
             _photoRepository = photoRepository;
         }
 
-        public new async Task<Record> GetAsync(Guid id)
+        public new async Task<Record?> GetAsync(Guid id)
         {
             return await _repository.GetAsync(
                 id,
@@ -83,6 +83,11 @@ namespace RecordStore.Service.Services
             var selectedCategories = editRecordViewModel.Categories.Where(g => g.IsSelected).Select(g => g.Id);
 
             var existingRecord = await _repository.GetAsync(id, r => r.Genres, r => r.Styles, r => r.Categories);
+
+            if (existingRecord is null)
+            {
+                return;
+            }
 
             existingRecord.Title = editRecordViewModel.Title;
             existingRecord.Description = editRecordViewModel.Description;
