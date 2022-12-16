@@ -3,6 +3,6 @@
     public class Release : Entity
     {
         public string Name { get; set; }
-        public ICollection<Record> Records { get; set; }
+        public ICollection<Record> Records { get; set; } = new List<Record>();
     }
 }

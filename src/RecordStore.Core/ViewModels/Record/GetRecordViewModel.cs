@@ -21,10 +21,10 @@ namespace RecordStore.Core.ViewModels.Record
         public GetReleaseDTO? Release { get; set; }
         [DisplayName("Record Condition")]
         public GetConditionDTO? RecordCondition { get; set; }
-        public IEnumerable<GetCategoryDTO> Categories { get; set; }
-        //public IEnumerable<GetArtistDTO> Artists { get; set; }
-        public IEnumerable<GetGenreDTO> Genres { get; set; }
-        public IEnumerable<GetStyleDTO> Styles { get; set; }
+        public IEnumerable<GetCategoryDTO> Categories { get; set; } = Enumerable.Empty<GetCategoryDTO>();
+        //public IEnumerable<GetArtistDTO> Artists { get; set; } = Enumerable.Empty<GetArtistDTO>();
+        public IEnumerable<GetGenreDTO> Genres { get; set; } = Enumerable.Empty<GetGenreDTO>();
+        public IEnumerable<GetStyleDTO> Styles { get; set; } = Enumerable.Empty<GetStyleDTO>();
         //public IEnumerable<Photo> Photos { get; set; }
     }
 }

@@ -12,10 +12,10 @@
         public Release? Release { get; set; }
         public Guid? RecordConditionId { get; set; }
         public Condition? RecordCondition { get; set; }
-        public ICollection<Category> Categories { get; set; }
-        public ICollection<Artist> Artists { get; set; }
-        public ICollection<Genre> Genres { get; set; }
-        public ICollection<Style> Styles { get; set; }
-        public ICollection<Photo> Photos { get; set; }
+        public ICollection<Category> Categories { get; set; } = new List<Category>();
+        public ICollection<Artist> Artists { get; set; } = new List<Artist>();
+        public ICollection<Genre> Genres { get; set; } = new List<Genre>();
+        public ICollection<Style> Styles { get; set; } = new List<Style>();
+        public ICollection<Photo> Photos { get; set; } = new List<Photo>();
     }
 }
