@@ -10,7 +10,7 @@ namespace RecordStore.MVC.Extensions
             var currentController = (string)html.ViewContext.RouteData.Values["controller"];
             if (string.IsNullOrEmpty(controller)) controller = currentController;
             if (string.IsNullOrEmpty(action)) action = currentAction;
-            return controller == currentController && action == currentAction ? "active" : cssClass;
+            return controller == currentController /*&& action == currentAction*/ ? "active" : cssClass;
         }
     }
 }
