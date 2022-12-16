@@ -73,6 +73,21 @@ namespace RecordStore.Infrastructure.Data
             );
 
             builder.Entity<Record>()
+                .HasOne(r => r.Format)
+                .WithMany(f => f.Records)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            builder.Entity<Record>()
+                .HasOne(r => r.Release)
+                .WithMany(r => r.Records)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            builder.Entity<Record>()
+                .HasOne(r => r.RecordCondition)
+                .WithMany(c => c.Records)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            builder.Entity<Record>()
                 .HasMany(r => r.Artists)
                 .WithMany(a => a.Records);
 

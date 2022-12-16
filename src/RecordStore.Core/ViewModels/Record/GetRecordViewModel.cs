@@ -17,10 +17,10 @@ namespace RecordStore.Core.ViewModels.Record
         public string? Description { get; set; }
         [DisplayName("Created On")]
         public DateTimeOffset CreateDate { get; set; }
-        public GetFormatDTO Format { get; set; }
-        public GetReleaseDTO Release { get; set; }
+        public GetFormatDTO? Format { get; set; }
+        public GetReleaseDTO? Release { get; set; }
         [DisplayName("Record Condition")]
-        public GetConditionDTO RecordCondition { get; set; }
+        public GetConditionDTO? RecordCondition { get; set; }
         public IEnumerable<GetCategoryDTO> Categories { get; set; }
         //public IEnumerable<GetArtistDTO> Artists { get; set; }
         public IEnumerable<GetGenreDTO> Genres { get; set; }

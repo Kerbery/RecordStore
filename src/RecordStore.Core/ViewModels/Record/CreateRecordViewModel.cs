@@ -1,7 +1,7 @@
 ﻿using RecordStore.Core.ViewModels.Category;
 using RecordStore.Core.ViewModels.Genre;
 using RecordStore.Core.ViewModels.Style;
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace RecordStore.Core.ViewModels.Record
 {
@@ -22,13 +22,13 @@ namespace RecordStore.Core.ViewModels.Record
         public string? Description { get; set; }
 
         [Display(Name = "Format")]
-        public Guid FormatId { get; set; }
+        public Guid? FormatId { get; set; }
 
         [Display(Name = "Release")]
-        public Guid ReleaseId { get; set; }
+        public Guid? ReleaseId { get; set; }
 
         [Display(Name = "Record Condition")]
-        public Guid RecordConditionId { get; set; }
+        public Guid? RecordConditionId { get; set; }
         public List<CategoryViewModel> Categories { get; set; } = new List<CategoryViewModel>();
         //public IEnumerable<Guid> Artists { get; set; } = new List<Guid>();
         public List<GenreViewModel> Genres { get; set; } = new List<GenreViewModel>();
