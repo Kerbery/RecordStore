@@ -69,7 +69,7 @@ namespace RecordStore.Service.Services
                 Styles = (ICollection<Style>)await _styleRepository.GetAllAsync(s => selectedStyles.Contains(s.Id)),
                 Categories = (ICollection<Category>)await _categoryRepository.GetAllAsync(c => selectedCategories.Contains(c.Id)),
                 //Artists = createRecordViewModel.Artists,
-                Photos = createRecordViewModel.Photos.Select((fileName, index) => new Photo { Filename = fileName, Position = index }).ToList(),
+                Photos = createRecordViewModel.Photos.Where(filename => !string.IsNullOrEmpty(filename)).Select((fileName, index) => new Photo { Filename = fileName, Position = index }).ToList(),
             };
 
             await CreateAsync(record);
