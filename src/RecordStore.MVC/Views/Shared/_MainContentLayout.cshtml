@@ -1,0 +1,12 @@
+﻿@using RecordStore.MVC.Extensions
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container h-100 bg-white">
+    @RenderBody()
+</div>
+
+@section Scripts {
+    @{await RenderSectionAsync("Scripts", required: false);}
+}

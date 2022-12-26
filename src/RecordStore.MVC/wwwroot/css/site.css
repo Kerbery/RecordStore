@@ -1,5 +1,9 @@
 html {
     font-size: 14px;
+    overflow-y: scroll;
+}
+body, main {
+    background: #f2f2f2;
 }
 
 @media (min-width: 768px) {
@@ -20,8 +24,7 @@ body {
 }
 
 main {
-    padding-bottom: 60px;
-    padding-top: 59px;
+    padding-top: 3.5rem;
 }
 
 .placeholder-backgound {
@@ -48,9 +51,8 @@ main {
     height: 120px;
 }
 
-.photo-tumbnail img {
-    width: 100%;
-    height: 100%;
+.photo-tumbnail span {
+    border-radius: 4%;
 }
 
 .thumbnail-close {
@@ -61,11 +63,32 @@ main {
     background-color: red;
 }
 
+.nav-link i
+{
+    font-size:22px;
+}
+
 .adminSidebar {
-    width: 280px;
-    position: fixed;
+    grid-area: sidebar;
+    top: 3.5rem;
+    position: sticky;
     z-index: 1000;
-    height: calc(100vh - 59px);
+    height: calc(100vh - 3.5rem);
+}
+
+.my-layout {
+    display: grid;
+    gap: 0rem;
+    grid-template-areas: "sidebar main";
+    grid-template-columns: 60px 1fr;
+    background-color: white;
+}
+
+
+@media (min-width: 768px) {
+    .my-layout {
+        grid-template-columns: 200px 1fr;
+    }
 }
 
 .preview_thumbnail {
