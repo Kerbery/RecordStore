@@ -1,5 +1,5 @@
 ﻿FilePond.registerPlugin(
-    FilePondPluginImagePreview
+    FilePondPluginImagePreview, FilePondPluginFileValidateType, FilePondPluginFileValidateSize
 );
 
 FilePond.setOptions({
@@ -32,6 +32,7 @@ FilePond.setOptions({
         load: '/',
         fetch: '/'
     },
+    maxFileSize: "4MB",
     allowReorder: true,
     labelIdle: 'Drag & Drop your photos or <span class="filepond--label-action"> Browse </span>'
 });
