@@ -5,87 +5,46 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminDashboardLayout.cshtml";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a class="btn btn-primary" asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Year)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Release)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Format)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RecordCondition)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Categories)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Genres)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Styles)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="container">
+    <table id="myTable" class="table nowrap w-100">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Year)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Release)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Format)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RecordCondition)
-                </td>
-                <td>
-                    @string.Join(", ", item.Categories.Select(c => c.Name))
-                </td>
-                <td>
-                    @string.Join(", ", item.Genres.Select(g => g.Name))
-                </td>
-                <td>
-                    @string.Join(", ", item.Styles.Select(s => s.Name))
-                </td>
-                <td>
-                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
+                <th></th>
+                <th>ID</th>
+                <th></th>
+                <th></th>
+                <th>Title</th>
+                <th>Year</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Format</th>
+                <th>Release</th>
+                <th>RecordCondition</th>
+                <th>Categories</th>
+                <th>Genres</th>
+                <th>Styles</th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <link href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/searchpanes/2.1.0/css/searchPanes.bootstrap5.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/select/1.5.0/css/select.bootstrap5.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/buttons/2.3.2/css/buttons.bootstrap5.min.css" rel="stylesheet">
+  
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/searchpanes/2.1.0/js/dataTables.searchPanes.min.js"></script>
+    <script src="https://cdn.datatables.net/searchpanes/2.1.0/js/searchPanes.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.5.0/js/dataTables.select.min.js"></script>
+
+    <script src="~/js/datatables.js" type="text/javascript"></script>
+}

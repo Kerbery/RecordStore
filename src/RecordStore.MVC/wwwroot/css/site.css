@@ -134,3 +134,10 @@ main {
         width: calc(25% - 0.5em);
     }
 }
+
+.artwork-placeholder span {
+    display: block;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-image: linear-gradient(135deg,#70929c,#e6846e);
+}

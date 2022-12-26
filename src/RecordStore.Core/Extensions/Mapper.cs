@@ -3,6 +3,7 @@ using RecordStore.Core.DTOs.Category;
 using RecordStore.Core.DTOs.Condition;
 using RecordStore.Core.DTOs.Format;
 using RecordStore.Core.DTOs.Genre;
+using RecordStore.Core.DTOs.Record;
 using RecordStore.Core.DTOs.Release;
 using RecordStore.Core.DTOs.Style;
 using RecordStore.Core.Entities.Identity;
@@ -53,6 +54,26 @@ namespace RecordStore.Core.Extensions
         public static GetRecordViewModel AsViewModel(this Record record)
         {
             return new GetRecordViewModel
+            {
+                Id = record.Id,
+                CreateDate = record.CreateDate,
+                Title = record.Title,
+                Year = record.Year,
+                Price = record.Price,
+                Description = record.Description,
+                Format = record.Format?.AsDTO(),
+                Release = record.Release?.AsDTO(),
+                RecordCondition = record.RecordCondition?.AsDTO(),
+                Genres = record.Genres.Select(g => g.AsDTO()),
+                Styles = record.Styles.Select(s => s.AsDTO()),
+                Categories = record.Categories.Select(c => c.AsDTO()),
+                Photos = record.Photos.OrderBy(p => p.Position).Select(p => p.Filename)
+            };
+        }
+
+        public static GetRecordDTO AsDTO(this Record record)
+        {
+            return new GetRecordDTO
             {
                 Id = record.Id,
                 CreateDate = record.CreateDate,
