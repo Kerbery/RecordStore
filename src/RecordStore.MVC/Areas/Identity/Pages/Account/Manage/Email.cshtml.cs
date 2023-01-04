@@ -2,15 +2,16 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using RecordStore.Core.Entities.Identity;
+using RecordStore.Core.Resources;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
+using System.Text.Encodings.Web;
 
 namespace RecordStore.MVC.Areas.Identity.Pages.Account.Manage
 {
@@ -34,6 +35,7 @@ namespace RecordStore.MVC.Areas.Identity.Pages.Account.Manage
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
+        [Display(Name = nameof(UILabels.Email), ResourceType = typeof(UILabels))]
         public string Email { get; set; }
 
         /// <summary>
@@ -66,9 +68,9 @@ namespace RecordStore.MVC.Areas.Identity.Pages.Account.Manage
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
-            [EmailAddress]
-            [Display(Name = "New email")]
+            [Display(Name = nameof(UILabels.NewEmail), ResourceType = typeof(UILabels))]
+            [Required(ErrorMessageResourceName = nameof(UILabels.FieldRequired), ErrorMessageResourceType = typeof(UILabels))]
+            [EmailAddress(ErrorMessageResourceName = nameof(UILabels.EmailInvalid), ErrorMessageResourceType = typeof(UILabels))]
             public string NewEmail { get; set; }
         }
 
@@ -90,7 +92,7 @@ namespace RecordStore.MVC.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound(string.Format(UILabels.UnableToLoadUserWithID, _userManager.GetUserId(User)));
             }
 
             await LoadAsync(user);
@@ -102,7 +104,7 @@ namespace RecordStore.MVC.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound(string.Format(UILabels.UnableToLoadUserWithID, _userManager.GetUserId(User)));
             }
 
             if (!ModelState.IsValid)
@@ -131,7 +133,7 @@ namespace RecordStore.MVC.Areas.Identity.Pages.Account.Manage
                 return RedirectToPage();
             }
 
-            StatusMessage = "Your email is unchanged.";
+            StatusMessage = UILabels.EmailUnchanged;
             return RedirectToPage();
         }
 
@@ -140,7 +142,7 @@ namespace RecordStore.MVC.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound(string.Format(UILabels.UnableToLoadUserWithID, _userManager.GetUserId(User)));
             }
 
             if (!ModelState.IsValid)
@@ -163,7 +165,7 @@ namespace RecordStore.MVC.Areas.Identity.Pages.Account.Manage
                 "Confirm your email",
                 $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-            StatusMessage = "Verification email sent. Please check your email.";
+            StatusMessage = UILabels.VerificationEmailSent;
             return RedirectToPage();
         }
     }

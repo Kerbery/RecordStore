@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RecordStore.Core.Entities.Identity;
+using RecordStore.Core.Resources;
 
 namespace RecordStore.MVC.Areas.Identity.Pages.Account.Manage
 {
@@ -25,7 +26,7 @@ namespace RecordStore.MVC.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound(string.Format(UILabels.UnableToLoadUserWithID, _userManager.GetUserId(User)));
             }
 
             return Page();

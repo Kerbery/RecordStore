@@ -2,12 +2,13 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RecordStore.Core.Entities.Identity;
+using RecordStore.Core.Resources;
+using System.ComponentModel.DataAnnotations;
 
 namespace RecordStore.MVC.Areas.Identity.Pages.Account
 {
@@ -59,22 +60,24 @@ namespace RecordStore.MVC.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
 
-            [Required]
+            [Display(Name = nameof(UILabels.Username), ResourceType = typeof(UILabels))]
+            [Required(ErrorMessageResourceName = nameof(UILabels.FieldRequired), ErrorMessageResourceType = typeof(UILabels))]
             public string Username { get; set; }
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
             [DataType(DataType.Password)]
+            [Display(Name = nameof(UILabels.Password), ResourceType = typeof(UILabels))]
+            [Required(ErrorMessageResourceName = nameof(UILabels.FieldRequired), ErrorMessageResourceType = typeof(UILabels))]
             public string Password { get; set; }
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Display(Name = "Remember me?")]
+            [Display(Name = nameof(UILabels.RememberMe), ResourceType = typeof(UILabels))]
             public bool RememberMe { get; set; }
         }
 
@@ -122,7 +125,7 @@ namespace RecordStore.MVC.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, UILabels.InvalidLoginAttempt);
                     return Page();
                 }
             }

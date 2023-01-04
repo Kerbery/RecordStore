@@ -7,30 +7,47 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RecordStore.Core.Entities.Identity;
 using RecordStore.Core.Resources;
-using System.ComponentModel.DataAnnotations;
 
 namespace RecordStore.MVC.Areas.Identity.Pages.Account.Manage
 {
-    public class IndexModel : PageModel
+    public class TwoFactorAuthenticationModel : PageModel
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly ILogger<TwoFactorAuthenticationModel> _logger;
 
-        public IndexModel(
-            UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+        public TwoFactorAuthenticationModel(
+            UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ILogger<TwoFactorAuthenticationModel> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _logger = logger;
         }
 
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
-        /// 
-        [Display(Name = nameof(UILabels.Username), ResourceType = typeof(UILabels))]
-        public string Username { get; set; }
+        public bool HasAuthenticator { get; set; }
+
+        /// <summary>
+        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
+        ///     directly from your code. This API may change or be removed in future releases.
+        /// </summary>
+        public int RecoveryCodesLeft { get; set; }
+
+        /// <summary>
+        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
+        ///     directly from your code. This API may change or be removed in future releases.
+        /// </summary>
+        [BindProperty]
+        public bool Is2faEnabled { get; set; }
+
+        /// <summary>
+        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
+        ///     directly from your code. This API may change or be removed in future releases.
+        /// </summary>
+        public bool IsMachineRemembered { get; set; }
 
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -38,41 +55,6 @@ namespace RecordStore.MVC.Areas.Identity.Pages.Account.Manage
         /// </summary>
         [TempData]
         public string StatusMessage { get; set; }
-
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
-        [BindProperty]
-        public InputModel Input { get; set; }
-
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
-        public class InputModel
-        {
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
-            [Display(Name = nameof(UILabels.PhoneNumber), ResourceType = typeof(UILabels))]
-            [Phone(ErrorMessageResourceName = nameof(UILabels.InvlidPhoneNumber), ErrorMessageResourceType = typeof(UILabels))]
-            public string PhoneNumber { get; set; }
-        }
-
-        private async Task LoadAsync(ApplicationUser user)
-        {
-            var userName = await _userManager.GetUserNameAsync(user);
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-
-            Username = userName;
-
-            Input = new InputModel
-            {
-                PhoneNumber = phoneNumber
-            };
-        }
 
         public async Task<IActionResult> OnGetAsync()
         {
@@ -82,7 +64,11 @@ namespace RecordStore.MVC.Areas.Identity.Pages.Account.Manage
                 return NotFound(string.Format(UILabels.UnableToLoadUserWithID, _userManager.GetUserId(User)));
             }
 
-            await LoadAsync(user);
+            HasAuthenticator = await _userManager.GetAuthenticatorKeyAsync(user) != null;
+            Is2faEnabled = await _userManager.GetTwoFactorEnabledAsync(user);
+            IsMachineRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user);
+            RecoveryCodesLeft = await _userManager.CountRecoveryCodesAsync(user);
+
             return Page();
         }
 
@@ -94,26 +80,8 @@ namespace RecordStore.MVC.Areas.Identity.Pages.Account.Manage
                 return NotFound(string.Format(UILabels.UnableToLoadUserWithID, _userManager.GetUserId(User)));
             }
 
-            if (!ModelState.IsValid)
-            {
-                await LoadAsync(user);
-                return Page();
-            }
-
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            if (Input.PhoneNumber != phoneNumber)
-            {
-                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
-                if (!setPhoneResult.Succeeded)
-                {
-
-                    StatusMessage = UILabels.ErrorSettingPhoneNumber;
-                    return RedirectToPage();
-                }
-            }
-
-            await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = UILabels.ProfileUpdated;
+            await _signInManager.ForgetTwoFactorClientAsync();
+            StatusMessage = UILabels.BrowserForgotten;
             return RedirectToPage();
         }
     }
