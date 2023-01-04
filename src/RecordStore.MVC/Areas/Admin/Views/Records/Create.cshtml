@@ -7,11 +7,11 @@
 @model RecordStore.Core.ViewModels.Record.CreateRecordViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = @UILabels.AddRecordTitle;
     Layout = "~/Areas/Admin/Views/Shared/_AdminDashboardLayout.cshtml";
 }
 
-<h2>Add New Record</h2>
+<h2>@UILabels.AddRecordHeader</h2>
 <hr />
 <form asp-action="Create">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -43,21 +43,21 @@
             <div class="form-group mb-3">
                 <label asp-for="RecordConditionId" class="control-label"></label>
                 <select class="form-select" asp-for="RecordConditionId" asp-items="@(new SelectList(ViewData["Conditions"] as IEnumerable<GetConditionDTO>, nameof(GetConditionDTO.Id), nameof(GetConditionDTO.Name)))">
-                    <option value="">--Select--</option>
+                    <option value="">@UILabels.SelectOption</option>
                 </select>
                 <span asp-validation-for="RecordConditionId" class="text-danger"></span>
             </div>
             <div class="form-group mb-3">
                 <label asp-for="FormatId" class="control-label"></label>
                 <select class="form-select" asp-for="FormatId" asp-items="@(new SelectList(ViewData["Formats"] as IEnumerable<GetFormatDTO>, nameof(GetFormatDTO.Id), nameof(GetFormatDTO.Name)))">
-                    <option value="">--Select--</option>
+                    <option value="">@UILabels.SelectOption</option>
                 </select>
                 <span asp-validation-for="FormatId" class="text-danger"></span>
             </div>
             <div class="form-group mb-3">
                 <label asp-for="ReleaseId" class="control-label"></label>
                 <select class="form-select" asp-for="ReleaseId" asp-items="@(new SelectList(ViewData["Releases"] as IEnumerable<GetReleaseDTO>, nameof(GetReleaseDTO.Id), nameof(GetReleaseDTO.Name)))">
-                    <option value="">--Select--</option>
+                    <option value="">@UILabels.SelectOption</option>
                 </select>
                 <span asp-validation-for="ReleaseId" class="text-danger"></span>
             </div>
@@ -120,7 +120,7 @@
         </div>
     </div>
     <div class="form-group mb-3">
-        <input type="submit" value="Create" class="btn btn-primary" />
+        <input type="submit" value="@UILabels.CreateRecordAction" class="btn btn-primary" />
     </div>
 </form>
 

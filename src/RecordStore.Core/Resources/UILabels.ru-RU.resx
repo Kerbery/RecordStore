@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Welcome" xml:space="preserve">
+    <value>Добро пожаловать!!</value>
+  </data>
+  <data name="InstructionsFor2FAConfirmationCode" xml:space="preserve">
+    <value>После того, как вы отсканировали QR -код или введете приведенный выше ключ, ваше приложение для аутентификации двух факторов предоставит вам уникальный код. Введите код в поле подтверждения ниже.</value>
+  </data>
+  <data name="AddAuthenticatorApp" xml:space="preserve">
+    <value>Добавить приложение Authenticator</value>
+  </data>
+  <data name="AdminDashboard" xml:space="preserve">
+    <value>Админ панель</value>
+  </data>
+  <data name="AuthAppVerified" xml:space="preserve">
+    <value>Ваше приложение Authenticator было проверено.</value>
+  </data>
+  <data name="AuthConfigInstructions" xml:space="preserve">
+    <value>Чтобы использовать приложение Authenticator, выполните следующие шаги:</value>
+  </data>
+  <data name="AuthenticatorApp" xml:space="preserve">
+    <value>Authenticator App</value>
+  </data>
+  <data name="AuthenticatorResetSuccessfully" xml:space="preserve">
+    <value>Ваша клавиша приложения Authenticator была сброшена, вам нужно будет настроить ваше приложение Authenticator, используя новый ключ.</value>
+  </data>
+  <data name="AuthentificatorKeyResetDetails" xml:space="preserve">
+    <value>Этот процесс отключает 2FA до тех пор, пока вы не проверьте свое приложение Authenticator. Если вы не завершите конфигурацию приложения Authenticator, вы можете потерять доступ к своей учетной записи.</value>
+  </data>
+  <data name="AuthentificatorKeyResetWarning" xml:space="preserve">
+    <value>Если вы сбросите ключ аутентификатора, ваше приложение Authenticator не будет работать, пока вы не перенастроете его.</value>
+  </data>
+  <data name="BrowserForgotten" xml:space="preserve">
+    <value>Текущий браузер был забыт. Когда вы снова входите в систему из этого браузера, вас будет предложено для вашего кода 2FA.</value>
+  </data>
+  <data name="ChangeAccountSettingsHeader" xml:space="preserve">
+    <value>Измените настройки учетной записи</value>
+  </data>
+  <data name="ChangePasswordTitle" xml:space="preserve">
+    <value>Изменить пароль</value>
+  </data>
+  <data name="ChangeEmailAction" xml:space="preserve">
+    <value>Изменить e-mail</value>
+  </data>
+  <data name="ConfigureAuthenticatorTitle" xml:space="preserve">
+    <value>Настройте приложение Authenticator</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Подтвердите новый пароль</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Подтвердите пароль</value>
+  </data>
+  <data name="CreateNewAccount" xml:space="preserve">
+    <value>Создать новый аккаунт.</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Текущий пароль</value>
+  </data>
+  <data name="DeletePersonalData" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="Disable2FA" xml:space="preserve">
+    <value>Отключить 2FA</value>
+  </data>
+  <data name="DownloadAuthenticators" xml:space="preserve">
+    <value>Загрузите двухфакторное приложение Authenticator, такое как Microsoft Authenticator для {0} и {1} или Google Authenticator для {2} и {3}.</value>
+  </data>
+  <data name="DownloadPersonalData" xml:space="preserve">
+    <value>Скачать</value>
+  </data>
+  <data name="EmailInvalid" xml:space="preserve">
+    <value>Электронная почта недействительна.</value>
+  </data>
+  <data name="EmailUnchanged" xml:space="preserve">
+    <value>Ваша электронная почта не изменилась.</value>
+  </data>
+  <data name="ErrorSettingPhoneNumber" xml:space="preserve">
+    <value>Неожиданная ошибка при попытке установить номер телефона.</value>
+  </data>
+  <data name="ExternalLogins" xml:space="preserve">
+    <value>Внешние логины</value>
+  </data>
+  <data name="ExternalRegister" xml:space="preserve">
+    <value>Используйте другую службу для регистрации.</value>
+  </data>
+  <data name="FieldRequired" xml:space="preserve">
+    <value>Поле {0} требуется.</value>
+  </data>
+  <data name="ForgetThisBrowser" xml:space="preserve">
+    <value>Забудьте об этом браузере</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Забыли пароль?</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Привет</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Домой</value>
+  </data>
+  <data name="InvalidVerificationCode" xml:space="preserve">
+    <value>Код проверки недействителен.</value>
+  </data>
+  <data name="InvlidPhoneNumber" xml:space="preserve">
+    <value>Инвентарный номер телефона.</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Авторизоваться</value>
+  </data>
+  <data name="LoginTitle" xml:space="preserve">
+    <value>Войдите в свою учетную запись</value>
+  </data>
+  <data name="LoginUsing" xml:space="preserve">
+    <value>Войдите в систему, используя свою учетную запись {0}</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Выйти</value>
+  </data>
+  <data name="LogoutAction" xml:space="preserve">
+    <value>Нажмите здесь, чтобы выйти в систему</value>
+  </data>
+  <data name="LogoutSuccessful" xml:space="preserve">
+    <value>Вы успешно вышли из приложения.</value>
+  </data>
+  <data name="ManageAccountHeader" xml:space="preserve">
+    <value>Настройте свой аккаунт</value>
+  </data>
+  <data name="ManageEmail" xml:space="preserve">
+    <value>Управлять электронной почтой</value>
+  </data>
+  <data name="NewEmail" xml:space="preserve">
+    <value>Новый email-адрес</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Новый пароль</value>
+  </data>
+  <data name="NoExternalAuthenticationServices" xml:space="preserve">
+    <value>Не существует внешних служб аутентификации.</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="PasswordChangedSuccessfully" xml:space="preserve">
+    <value>Ваш пароль был изменен.</value>
+  </data>
+  <data name="PasswordMismatch" xml:space="preserve">
+    <value>Пароль и пароль подтверждения не совпадают.</value>
+  </data>
+  <data name="PersonalData" xml:space="preserve">
+    <value>Персональные данные</value>
+  </data>
+  <data name="PersonalDataDeclaration" xml:space="preserve">
+    <value>Ваша учетная запись содержит личные данные, которые вы нам дали. Эта страница позволяет загружать или удалять эти данные.</value>
+  </data>
+  <data name="PersonalDataDeletionWarning" xml:space="preserve">
+    <value>Удаление этих данных навсегда удалит вашу учетную запись, и это не может быть восстановлено.</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Телефонный номер</value>
+  </data>
+  <data name="PrivacyAndCookiePolicyNotAccepted" xml:space="preserve">
+    <value>Конфиденциальность и политика cookie не приняты.</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Профиль</value>
+  </data>
+  <data name="ProfileUpdated" xml:space="preserve">
+    <value>Ваш профиль обновлен</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="RegisterAsNewUser" xml:space="preserve">
+    <value>Зарегистрируйтесь в качестве нового пользователя</value>
+  </data>
+  <data name="RegisterTitle" xml:space="preserve">
+    <value>Зарегистрируйте нового пользователя</value>
+  </data>
+  <data name="RegisterAction" xml:space="preserve">
+    <value>Зарегистрироваться</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Запомнить меня?</value>
+  </data>
+  <data name="ResendEmailConfirmation" xml:space="preserve">
+    <value>Отправить подтверждение по электронной почте</value>
+  </data>
+  <data name="ResetAction" xml:space="preserve">
+    <value>Перезагрузить</value>
+  </data>
+  <data name="ResetAuthenticatorApp" xml:space="preserve">
+    <value>Сбросить приложение Authenticator</value>
+  </data>
+  <data name="ResetAuthenticatorKeyAction" xml:space="preserve">
+    <value>Сбросить ключ аутентикатора</value>
+  </data>
+  <data name="ResetAuthenticatorTitle" xml:space="preserve">
+    <value>Сбросить ключ аутентикатора</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Сброс пароля</value>
+  </data>
+  <data name="ResetPasswordHeader" xml:space="preserve">
+    <value>Сбросить свой пароль.</value>
+  </data>
+  <data name="ResetRecoveryCodes" xml:space="preserve">
+    <value>Сбросить коды восстановления</value>
+  </data>
+  <data name="SaveAction" xml:space="preserve">
+    <value>Сохранять</value>
+  </data>
+  <data name="ScanQRCode" xml:space="preserve">
+    <value>Сканируйте QR -код или введите этот ключ {0} в приложение для двух факторов Authenticator. Пространства и корпус не имеют значения.</value>
+  </data>
+  <data name="SendVerificationEmail" xml:space="preserve">
+    <value>Отправить письмо с подтверждением</value>
+  </data>
+  <data name="SetupAuthenticatorApp" xml:space="preserve">
+    <value>Настройка приложения Authenticator</value>
+  </data>
+  <data name="ShouldAcceptCookieAndPrivacyFor2FA" xml:space="preserve">
+    <value>Вы должны принять политику, прежде чем вы сможете включить двух факторную аутентификацию.</value>
+  </data>
+  <data name="StringLengthRange" xml:space="preserve">
+    <value>{0} должно быть как минимум {2} и при максимальном {1} символах длинных.</value>
+  </data>
+  <data name="HomeTitle" xml:space="preserve">
+    <value>Домашняя страница</value>
+  </data>
+  <data name="TwoFactorAuthentication" xml:space="preserve">
+    <value>Двухфакторная аутентификация</value>
+  </data>
+  <data name="TwoFactorAuthenticationTitle" xml:space="preserve">
+    <value>Двухфакторная аутентификация (2FA)</value>
+  </data>
+  <data name="UnableToLoadUserWithID" xml:space="preserve">
+    <value>Невозможно загрузить пользователя с помощью идентификатора {0}.</value>
+  </data>
+  <data name="UpdatePassword" xml:space="preserve">
+    <value>Обновить пароль</value>
+  </data>
+  <data name="UseAnotherServiceToLogIn" xml:space="preserve">
+    <value>Используйте другую службу, чтобы войти в систему.</value>
+  </data>
+  <data name="UseLocalAccount" xml:space="preserve">
+    <value>Используйте локальную учетную запись, чтобы войти в систему.</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Имя пользователя</value>
+  </data>
+  <data name="VerificationCode" xml:space="preserve">
+    <value>Код верификации</value>
+  </data>
+  <data name="VerificationEmailSent" xml:space="preserve">
+    <value>Проверка электронная почта отправлена. Пожалуйста, проверьте свою электронную почту.</value>
+  </data>
+  <data name="Verify" xml:space="preserve">
+    <value>Проверять</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Электронная почта</value>
+  </data>
+  <data name="PersonalDataTitle" xml:space="preserve">
+    <value>Персональные данные</value>
+  </data>
+  <data name="EnterEmailHeader" xml:space="preserve">
+    <value>Введите адрес электронной почты.</value>
+  </data>
+  <data name="ResetPasswordAction" xml:space="preserve">
+    <value>Сброс пароля</value>
+  </data>
+  <data name="LogoutTitle" xml:space="preserve">
+    <value>Выйти</value>
+  </data>
+  <data name="RegisterUsing" xml:space="preserve">
+    <value>Зарегистрируйтесь, используя свою учетную запись {0}</value>
+  </data>
+  <data name="ResetPasswordTitle" xml:space="preserve">
+    <value>Сброс пароля</value>
+  </data>
+  <data name="InvalidLoginAttempt" xml:space="preserve">
+    <value>Неверная попытка входа в систему.</value>
+  </data>
+  <data name="MissingPasswordResetCode" xml:space="preserve">
+    <value>Код должен быть предоставлен для сброса пароля.</value>
+  </data>
+  <data name="RecordDetailsTitle" xml:space="preserve">
+    <value>Управление данными записей</value>
+  </data>
+  <data name="AdminIndexTitle" xml:space="preserve">
+    <value>Управление страницей администратора</value>
+  </data>
+  <data name="AddRecordTitle" xml:space="preserve">
+    <value>Добавить новую запись</value>
+  </data>
+  <data name="AddRecordHeader" xml:space="preserve">
+    <value>Добавить новую запись</value>
+  </data>
+  <data name="SelectOption" xml:space="preserve">
+    <value>--Выбирать--</value>
+  </data>
+  <data name="CreateRecordAction" xml:space="preserve">
+    <value>Создавать</value>
+  </data>
+  <data name="DeleteRecordAction" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="DeleteRecordTitle" xml:space="preserve">
+    <value>Удалить запись</value>
+  </data>
+  <data name="DeleteRecordHeader" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="DeleteRecordConfirmationHeader" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить эту запись?</value>
+  </data>
+  <data name="ViewRecordDetailsTitle" xml:space="preserve">
+    <value>Запись подробностей</value>
+  </data>
+  <data name="ViewRecordDetailsHeader" xml:space="preserve">
+    <value>Подробности</value>
+  </data>
+  <data name="EditRecord" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="EditRecordTitle" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="EditRecordHeader" xml:space="preserve">
+    <value>Редактировать запись</value>
+  </data>
+  <data name="SaveRecordAction" xml:space="preserve">
+    <value>Сохранять</value>
+  </data>
+  <data name="Record_ID" xml:space="preserve">
+    <value>Идентификатор</value>
+  </data>
+  <data name="Record_Title" xml:space="preserve">
+    <value>Заголовок</value>
+  </data>
+  <data name="Record_Year" xml:space="preserve">
+    <value>Год</value>
+  </data>
+  <data name="Record_Price" xml:space="preserve">
+    <value>Цена</value>
+  </data>
+  <data name="Record_Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="Record_Format" xml:space="preserve">
+    <value>Формат</value>
+  </data>
+  <data name="Record_Release" xml:space="preserve">
+    <value>Выпускать</value>
+  </data>
+  <data name="Record_RecordCondition" xml:space="preserve">
+    <value>Запись</value>
+  </data>
+  <data name="Record_Categories" xml:space="preserve">
+    <value>Категории</value>
+  </data>
+  <data name="Record_Genres" xml:space="preserve">
+    <value>Жанры</value>
+  </data>
+  <data name="Record_Styles" xml:space="preserve">
+    <value>Стили</value>
+  </data>
+  <data name="RecordsIndexTitle" xml:space="preserve">
+    <value>Показатель</value>
+  </data>
+  <data name="AdminTools" xml:space="preserve">
+    <value>Админ Инструменты</value>
+  </data>
+  <data name="AdminHome" xml:space="preserve">
+    <value>Домой</value>
+  </data>
+  <data name="ManageUsers" xml:space="preserve">
+    <value>Управление пользователями</value>
+  </data>
+  <data name="ManageRecords" xml:space="preserve">
+    <value>Управление записями</value>
+  </data>
+  <data name="RecordDetails" xml:space="preserve">
+    <value>Подробности записи</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>Записывать</value>
+  </data>
+  <data name="WelcomeAdmin" xml:space="preserve">
+    <value>Добро пожаловать, администратор</value>
+  </data>
+  <data name="AdminIndexDescription" xml:space="preserve">
+    <value>Эта страница должна быть видна только администратору.</value>
+  </data>
+  <data name="ManageUsersTitle" xml:space="preserve">
+    <value>Управление страницей пользователей</value>
+  </data>
+  <data name="ManageUsersHeader" xml:space="preserve">
+    <value>Управление существующими пользователями</value>
+  </data>
+  <data name="AddUser" xml:space="preserve">
+    <value>Добавить пользователя</value>
+  </data>
+  <data name="RemoveLockout" xml:space="preserve">
+    <value>Разблокировать</value>
+  </data>
+  <data name="Lockout" xml:space="preserve">
+    <value>Блокировать</value>
+  </data>
+  <data name="AddUserTitle" xml:space="preserve">
+    <value>Добавить нового пользователя</value>
+  </data>
+  <data name="AddUserHeader" xml:space="preserve">
+    <value>Добавить нового пользователя</value>
+  </data>
+  <data name="EditUserTitle" xml:space="preserve">
+    <value>Редактировать данные пользователя</value>
+  </data>
+  <data name="EditUserHeader" xml:space="preserve">
+    <value>Редактировать данные пользователя</value>
+  </data>
+  <data name="StringMaxLength" xml:space="preserve">
+    <value>{0} должно быть на максимальном {1} символах длинной.</value>
+  </data>
+  <data name="RecordTitle" xml:space="preserve">
+    <value>Запись заголовок</value>
+  </data>
+  <data name="MinValue" xml:space="preserve">
+    <value>Пожалуйста, введите значение больше, чем {1}</value>
+  </data>
+  <data name="Record_CreatedOn" xml:space="preserve">
+    <value>Создано на</value>
+  </data>
+  <data name="NotANumber" xml:space="preserve">
+    <value>Поле {0} должно содержать число.</value>
+  </data>
+  <data name="Record_Photos" xml:space="preserve">
+    <value>Фото</value>
+  </data>
+  <data name="UserRoles" xml:space="preserve">
+    <value>Роли</value>
+  </data>
+</root>

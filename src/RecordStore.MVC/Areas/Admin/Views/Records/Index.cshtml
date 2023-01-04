@@ -1,8 +1,9 @@
 ﻿@model IEnumerable<RecordStore.Core.ViewModels.Record.GetRecordViewModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = @UILabels.RecordsIndexTitle;
     Layout = "~/Areas/Admin/Views/Shared/_AdminDashboardLayout.cshtml";
+    var region = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
 }
 
 <div class="container">
@@ -10,19 +11,19 @@
         <thead>
             <tr>
                 <th></th>
-                <th>ID</th>
+                <th>@UILabels.Record_ID</th>
                 <th></th>
                 <th></th>
-                <th>Title</th>
-                <th>Year</th>
-                <th>Price</th>
-                <th>Description</th>
-                <th>Format</th>
-                <th>Release</th>
-                <th>RecordCondition</th>
-                <th>Categories</th>
-                <th>Genres</th>
-                <th>Styles</th>
+                <th>@UILabels.Record_Title</th>
+                <th>@UILabels.Record_Year</th>
+                <th>@UILabels.Record_Price</th>
+                <th>@UILabels.Record_Description</th>
+                <th>@UILabels.Record_Format</th>
+                <th>@UILabels.Record_Release</th>
+                <th>@UILabels.Record_RecordCondition</th>
+                <th>@UILabels.Record_Categories</th>
+                <th>@UILabels.Record_Genres</th>
+                <th>@UILabels.Record_Styles</th>
                 <th></th>
             </tr>
         </thead>
@@ -36,7 +37,7 @@
     <link href="https://cdn.datatables.net/searchpanes/2.1.0/css/searchPanes.bootstrap5.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/select/1.5.0/css/select.bootstrap5.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/buttons/2.3.2/css/buttons.bootstrap5.min.css" rel="stylesheet">
-  
+
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
@@ -46,5 +47,9 @@
     <script src="https://cdn.datatables.net/searchpanes/2.1.0/js/searchPanes.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/select/1.5.0/js/dataTables.select.min.js"></script>
 
-    <script src="~/js/datatables.js" type="text/javascript"></script>
+    <script src="~/js/datatables.js" type="text/javascript"></script>    
+    @if (region != "en")
+    {
+        <script type="text/javascript" src="~/js/datatables.localization.@(region).js"></script>
+    }
 }

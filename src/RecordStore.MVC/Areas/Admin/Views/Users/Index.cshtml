@@ -1,24 +1,24 @@
 ﻿@using RecordStore.Core.ViewModels.User
 @{
     Layout = "../Shared/_AdminDashboardLayout.cshtml";
-    ViewData["Title"] = "Manage Page";
+    ViewData["Title"] = @UILabels.ManageUsersTitle;
 }
 @model IEnumerable<GetUserViewModel>
 
-<h1>Manage existing users</h1>
+<h1>@UILabels.ManageUsersHeader</h1>
 <hr />
 <a class="btn btn-primary" asp-area="Admin" asp-controller="Users" asp-action="Add">
     <i class="bi bi-person-plus"></i>
-    Add User
+    @UILabels.AddUser
 </a>
 
 <div class="text-center">
     <table class="table">
         <thead>
             <tr>
-                <th class="col-3" scope="col">Username</th>
-                <th class="col-6" scope="col">Email</th>
-                <th class="col-3" scope="col">Edit</th>
+                <th class="col-3" scope="col">@UILabels.Username</th>
+                <th class="col-5" scope="col">@UILabels.Email</th>
+                <th class="col-4" scope="col">@UILabels.EditRecord</th>
             </tr>
         </thead>
         <tbody>
@@ -26,21 +26,21 @@
             {
                 <tr>
                     <td class="col-3">@user.Username</td>
-                    <td class="col-6">@user.Email</td>
-                    <td class="col-3">
-                        <a class="btn btn-primary" role="button" asp-area="Admin" asp-controller="Users" asp-action="Edit" asp-route-id="@user.Id">Edit</a>
+                    <td class="col-5">@user.Email</td>
+                    <td class="col-4">
+                        <a class="btn btn-primary" role="button" asp-area="Admin" asp-controller="Users" asp-action="Edit" asp-route-id="@user.Id">@UILabels.EditRecord</a>
                         @if (user.IsLockedout)
                         {
                             <form class="d-inline-block" method="post" asp-action="RemoveLockout">
                                 <input name="Id" value="@user.Id" hidden />
-                                <button type="submit" class="btn btn-danger active">Remove Lockout</button>
+                                <button type="submit" class="btn btn-danger active">@UILabels.RemoveLockout</button>
                             </form>
                         }
                         else
                         {
                             <form class="d-inline-block" method="post" asp-action="Lockout">
                                 <input name="Id" value="@user.Id" hidden />
-                                <button type="submit" class="btn btn-danger">Lockout</button>
+                                <button type="submit" class="btn btn-danger">@UILabels.Lockout</button>
                             </form>
                         }
                     </td>

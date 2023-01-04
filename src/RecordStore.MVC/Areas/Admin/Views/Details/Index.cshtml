@@ -1,6 +1,7 @@
 ﻿@{
     Layout = "../Shared/_AdminDashboardLayout.cshtml";
-    ViewData["Title"] = "Manage Record Details";
+    ViewData["Title"] = @UILabels.RecordDetailsTitle;
+    var region = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName;
 }
 
 <div class="row">
@@ -26,9 +27,16 @@
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
     <script type="text/javascript" src="~/lib/jtable/jquery.jtable.min.js"></script>
-
+    @if (region != "en")
+    {
+        <script type="text/javascript" src="~/lib/jtable/localization/jquery.jtable.@(region).js"></script>
+    }
     <script type="text/javascript" src="~/lib/jtable/validation/jquery.validationEngine.js"></script>
-    <script type="text/javascript" src="~/lib/jtable/validation/jquery.validationEngine-en.js"></script>
+    <script type="text/javascript" src="~/lib/jtable/validation/jquery.validationEngine-@(region).js"></script>
 
     <script type="text/javascript" src="~/js/details.js"></script>
+    @if (region != "en")
+    {
+        <script type="text/javascript" src="~/js/details.localization.@(region).js"></script>
+    }
 }

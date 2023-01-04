@@ -4,34 +4,34 @@
 }
 <div class="my-layout container px-0">
     <aside class="adminSidebar d-flex flex-column flex-shrink-0 p-2 bg-light">
-        <a href="/" class="d-flex align-items-center justify-content-center link-dark text-decoration-none">
+        <a class="d-flex align-items-center justify-content-center link-dark text-decoration-none" asp-area="Admin" asp-controller="Home" asp-action="Index">
             <i class="bi bi-gear" style="font-size:32px"></i>
-            <span class="d-none d-md-inline fs-4 ps-2">Admin Tools</span>
+            <span class="d-none d-md-inline fs-4 ps-2">@UILabels.AdminTools</span>
         </a>
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-                <a class="nav-link @Html.IsActive("Home", "Index", "link-dark")" asp-area="Admin" asp-controller="Home" asp-action="Index">
-                    <i class="bi bi-house-door"></i>
-                    <div class="d-none d-md-inline">Home</div>
+                <a class="nav-link @Html.IsActive("Home", "Index", "link-dark") d-flex align-items-center" asp-area="Admin" asp-controller="Home" asp-action="Index">
+                    <i class="bi bi-house-door me-2"></i>
+                    <div class="d-none d-md-inline">@UILabels.AdminHome</div>
                 </a>
             </li>
             <li>
-                <a class="nav-link link-dark @Html.IsActive("Users", "Index", "link-dark")" asp-area="Admin" asp-controller="Users" asp-action="Index">
-                    <i class="bi bi-people"></i>
-                    <div class="d-none d-md-inline">Manage Users</div>
+                <a class="nav-link link-dark @Html.IsActive("Users", "Index", "link-dark") d-flex align-items-center" asp-area="Admin" asp-controller="Users" asp-action="Index">
+                    <i class="bi bi-people me-2"></i>
+                    <div class="d-none d-md-inline">@UILabels.ManageUsers</div>
                 </a>
             </li>
             <li>
-                <a class="nav-link link-dark @Html.IsActive("Records", "Index", "link-dark")" asp-area="Admin" asp-controller="Records" asp-action="Index">
-                    <i class="bi bi-vinyl-fill"></i>
-                    <div class="d-none d-md-inline">Manage Records</div>
+                <a class="nav-link link-dark @Html.IsActive("Records", "Index", "link-dark") d-flex align-items-center" asp-area="Admin" asp-controller="Records" asp-action="Index">
+                    <i class="bi bi-vinyl-fill me-2"></i>
+                    <div class="d-none d-md-inline">@UILabels.ManageRecords</div>
                 </a>
             </li>
             <li>
-                <a class="nav-link link-dark @Html.IsActive("Details", "Index", "link-dark")" asp-area="Admin" asp-controller="Details" asp-action="Index">
-                    <i class="bi bi-vinyl-fill"></i>
-                    <div class="d-none d-md-inline">Record Details</div>
+                <a class="nav-link link-dark @Html.IsActive("Details", "Index", "link-dark") d-flex align-items-center" asp-area="Admin" asp-controller="Details" asp-action="Index">
+                    <i class="bi bi-vinyl-fill me-2"></i>
+                    <div class="d-none d-md-inline">@UILabels.RecordDetails</div>
                 </a>
             </li>
         </ul>
@@ -42,10 +42,10 @@
                 <strong class="d-none d-md-inline">@User.Identity?.Name</strong>
             </a>
             <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                <li><a class="dropdown-item blue-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Profile">Profile</a></li>
+                <li><a class="dropdown-item blue-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="@UILabels.Profile">@UILabels.Profile</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li>
-                    <a class="dropdown-item" href="javascript: document.logoutForm.submit()">Logout</a>
+                    <a class="dropdown-item" href="javascript: document.logoutForm.submit()">@UILabels.Logout</a>
                 </li>
             </ul>
         </div>

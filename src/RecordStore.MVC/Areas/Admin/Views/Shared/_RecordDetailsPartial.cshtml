@@ -1,6 +1,6 @@
 ﻿@model RecordStore.Core.ViewModels.Record.GetRecordViewModel
 
-<h4>Record</h4>
+<h4>@UILabels.Record</h4>
 <hr />
 <dl class="row">
     <dt class="col-sm-2">
@@ -10,7 +10,7 @@
         <div class="row">
             @foreach (var photo in Model.Photos)
             {
-                var srcAddress = "/Images/Temp/" + photo;
+                var srcAddress = "/Images/Thumbs/" + photo;
                 <div class="photo_thumbnail col-md-2">
                     <img class="preview_thumbnail img-thumbnail" src="@srcAddress" />
                 </div>

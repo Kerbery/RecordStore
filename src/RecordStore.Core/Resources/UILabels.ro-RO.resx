@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Ți-ai uitat parola?</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Bine ati venit!!</value>
+  </data>
+  <data name="PasswordMismatch" xml:space="preserve">
+    <value>Parola și parola de confirmare nu se potrivesc.</value>
+  </data>
+  <data name="ChangePasswordTitle" xml:space="preserve">
+    <value>Schimbaţi parola</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Confirmă parola nouă</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirmă parola</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Parola actuală</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Parolă nouă</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Parolă</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Resetează parolă</value>
+  </data>
+  <data name="ResetPasswordAction" xml:space="preserve">
+    <value>Resetează</value>
+  </data>
+  <data name="ResetPasswordHeader" xml:space="preserve">
+    <value>Resetează parola.</value>
+  </data>
+  <data name="ResetPasswordTitle" xml:space="preserve">
+    <value>Resetarea parolei</value>
+  </data>
+  <data name="UpdatePassword" xml:space="preserve">
+    <value>Actualizați parola</value>
+  </data>
+  <data name="Record_Title" xml:space="preserve">
+    <value>Titlu</value>
+  </data>
+  <data name="NotANumber" xml:space="preserve">
+    <value>Câmpul {0} trebuie să conțină un număr.</value>
+  </data>
+  <data name="InstructionsFor2FAConfirmationCode" xml:space="preserve">
+    <value>După ce ați scanat codul QR sau introduceți cheia de mai sus, aplicația dvs. de autentificare cu doi factori vă va oferi un cod unic. Introduceți codul în caseta de confirmare de mai jos.</value>
+  </data>
+  <data name="AddAuthenticatorApp" xml:space="preserve">
+    <value>Adăugați aplicația Authenticator</value>
+  </data>
+  <data name="AdminDashboard" xml:space="preserve">
+    <value>Bord de administrare</value>
+  </data>
+  <data name="AuthAppVerified" xml:space="preserve">
+    <value>Aplicația dvs. de autentificare a fost verificată.</value>
+  </data>
+  <data name="AuthConfigInstructions" xml:space="preserve">
+    <value>Pentru a utiliza o aplicație de autentificare parcurgeți următorii pași:</value>
+  </data>
+  <data name="AuthenticatorApp" xml:space="preserve">
+    <value>Aplicație de autentificare</value>
+  </data>
+  <data name="AuthenticatorResetSuccessfully" xml:space="preserve">
+    <value>Cheia dvs. de aplicație Authenticator a fost resetată, va trebui să configurați aplicația dvs. Authenticator folosind noua cheie.</value>
+  </data>
+  <data name="AuthentificatorKeyResetDetails" xml:space="preserve">
+    <value>Acest proces dezactivează 2FA până când verificați aplicația de autentificare. Dacă nu completați configurația aplicației de autentificare, puteți pierde accesul la contul dvs.</value>
+  </data>
+  <data name="AuthentificatorKeyResetWarning" xml:space="preserve">
+    <value>Dacă resetați cheia de autentificare, aplicația dvs. de autentificare nu va funcționa până nu o reconfigurezi.</value>
+  </data>
+  <data name="BrowserForgotten" xml:space="preserve">
+    <value>Browserul actual a fost uitat. Când vă autentificați din nou din acest browser, vi se va solicita codul 2FA.</value>
+  </data>
+  <data name="ChangeAccountSettingsHeader" xml:space="preserve">
+    <value>Schimbați setările contului</value>
+  </data>
+  <data name="ChangeEmailAction" xml:space="preserve">
+    <value>Schimbați e-mail</value>
+  </data>
+  <data name="ConfigureAuthenticatorTitle" xml:space="preserve">
+    <value>Configurați aplicația Authenticator</value>
+  </data>
+  <data name="CreateNewAccount" xml:space="preserve">
+    <value>Creați un cont nou.</value>
+  </data>
+  <data name="DeletePersonalData" xml:space="preserve">
+    <value>Șterge</value>
+  </data>
+  <data name="Disable2FA" xml:space="preserve">
+    <value>Dezactivați 2FA</value>
+  </data>
+  <data name="DownloadAuthenticators" xml:space="preserve">
+    <value>Descărcați o aplicație cu doi factori de autentificare, cum ar fi Microsoft Authenticator pentru {0} și {1} sau Google Authenticator pentru {2} și {3}.</value>
+  </data>
+  <data name="DownloadPersonalData" xml:space="preserve">
+    <value>Descarcă</value>
+  </data>
+  <data name="EmailInvalid" xml:space="preserve">
+    <value>Adresa de e-mail este invalidă.</value>
+  </data>
+  <data name="EmailUnchanged" xml:space="preserve">
+    <value>E-mailul dvs. a rămas neschimbat.</value>
+  </data>
+  <data name="ErrorSettingPhoneNumber" xml:space="preserve">
+    <value>Eroare neașteptată atunci când încercați să setați numărul de telefon.</value>
+  </data>
+  <data name="ExternalLogins" xml:space="preserve">
+    <value>Autentificări externe</value>
+  </data>
+  <data name="ExternalRegister" xml:space="preserve">
+    <value>Utilizați un alt serviciu pentru a vă înregistra.</value>
+  </data>
+  <data name="FieldRequired" xml:space="preserve">
+    <value>Câmpul {0} este necesar.</value>
+  </data>
+  <data name="ForgetThisBrowser" xml:space="preserve">
+    <value>Uitați acest browser</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Salut</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Acasă</value>
+  </data>
+  <data name="InvalidVerificationCode" xml:space="preserve">
+    <value>Codul de verificare nu este valid.</value>
+  </data>
+  <data name="InvlidPhoneNumber" xml:space="preserve">
+    <value>Număr de telefon invlid.</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Autentificare</value>
+  </data>
+  <data name="LoginTitle" xml:space="preserve">
+    <value>Conectează-te la contul tău</value>
+  </data>
+  <data name="LoginUsing" xml:space="preserve">
+    <value>Conectați-vă folosind contul {0}</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Deconectare</value>
+  </data>
+  <data name="LogoutAction" xml:space="preserve">
+    <value>Faceți clic aici pentru a vă deconecta</value>
+  </data>
+  <data name="LogoutSuccessful" xml:space="preserve">
+    <value>Ați fost deconectat cu succes din aplicație.</value>
+  </data>
+  <data name="ManageAccountHeader" xml:space="preserve">
+    <value>Gestionează-ți contul</value>
+  </data>
+  <data name="ManageEmail" xml:space="preserve">
+    <value>Gestionați e-mailul</value>
+  </data>
+  <data name="NewEmail" xml:space="preserve">
+    <value>Email nou</value>
+  </data>
+  <data name="NoExternalAuthenticationServices" xml:space="preserve">
+    <value>Nu există servicii de autentificare externe configurate.</value>
+  </data>
+  <data name="PasswordChangedSuccessfully" xml:space="preserve">
+    <value>Parola dvs. a fost schimbată.</value>
+  </data>
+  <data name="PersonalData" xml:space="preserve">
+    <value>Date personale</value>
+  </data>
+  <data name="PersonalDataDeclaration" xml:space="preserve">
+    <value>Contul dvs. conține date personale pe care ni le-ați oferit. Această pagină vă permite să descărcați sau să ștergeți aceste date.</value>
+  </data>
+  <data name="PersonalDataDeletionWarning" xml:space="preserve">
+    <value>Ștergerea acestor date va elimina permanent contul dvs., iar acest lucru nu poate fi recuperat.</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Numar de telefon</value>
+  </data>
+  <data name="PrivacyAndCookiePolicyNotAccepted" xml:space="preserve">
+    <value>Politica de confidențialitate și cookie nu au fost acceptate.</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="ProfileUpdated" xml:space="preserve">
+    <value>Profilul dvs. a fost actualizat</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Înregistrare</value>
+  </data>
+  <data name="RegisterAsNewUser" xml:space="preserve">
+    <value>Înregistrați-vă ca un utilizator nou</value>
+  </data>
+  <data name="RegisterTitle" xml:space="preserve">
+    <value>Înregistrați un nou utilizator</value>
+  </data>
+  <data name="RegisterAction" xml:space="preserve">
+    <value>Înregistrează-te</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Reține-mă?</value>
+  </data>
+  <data name="ResendEmailConfirmation" xml:space="preserve">
+    <value>Revedeți confirmarea prin e-mail</value>
+  </data>
+  <data name="ResetAction" xml:space="preserve">
+    <value>Resetează</value>
+  </data>
+  <data name="ResetAuthenticatorApp" xml:space="preserve">
+    <value>Resetați aplicația de autentificare</value>
+  </data>
+  <data name="ResetAuthenticatorKeyAction" xml:space="preserve">
+    <value>Resetați cheia de autentificare</value>
+  </data>
+  <data name="ResetAuthenticatorTitle" xml:space="preserve">
+    <value>Resetați cheia de autentificare</value>
+  </data>
+  <data name="ResetRecoveryCodes" xml:space="preserve">
+    <value>Resetați codurile de recuperare</value>
+  </data>
+  <data name="SaveAction" xml:space="preserve">
+    <value>Salvează</value>
+  </data>
+  <data name="ScanQRCode" xml:space="preserve">
+    <value>Scanați codul QR sau introduceți această cheie {0} în aplicația dvs. de autentificare cu doi factori. Spațiile și carcasa nu contează.</value>
+  </data>
+  <data name="SendVerificationEmail" xml:space="preserve">
+    <value>Trimite emailul de verificare</value>
+  </data>
+  <data name="SetupAuthenticatorApp" xml:space="preserve">
+    <value>Configurați aplicația Authenticator</value>
+  </data>
+  <data name="ShouldAcceptCookieAndPrivacyFor2FA" xml:space="preserve">
+    <value>Trebuie să acceptați politica înainte de a putea activa autentificarea cu doi factori.</value>
+  </data>
+  <data name="StringLengthRange" xml:space="preserve">
+    <value>{0} trebuie să fie cel puțin {2} și la maximum {1} caractere.</value>
+  </data>
+  <data name="HomeTitle" xml:space="preserve">
+    <value>Pagina principala</value>
+  </data>
+  <data name="TwoFactorAuthentication" xml:space="preserve">
+    <value>Autentificare cu doi factori</value>
+  </data>
+  <data name="TwoFactorAuthenticationTitle" xml:space="preserve">
+    <value>Autentificare cu doi factori (2FA)</value>
+  </data>
+  <data name="UnableToLoadUserWithID" xml:space="preserve">
+    <value>Imposibil de încărcat utilizatorul cu ID-ul {0}.</value>
+  </data>
+  <data name="UseAnotherServiceToLogIn" xml:space="preserve">
+    <value>Utilizați un alt serviciu pentru a vă conecta.</value>
+  </data>
+  <data name="UseLocalAccount" xml:space="preserve">
+    <value>Utilizați un cont local pentru a vă conecta.</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Nume utilizator</value>
+  </data>
+  <data name="VerificationCode" xml:space="preserve">
+    <value>Cod de verificare</value>
+  </data>
+  <data name="VerificationEmailSent" xml:space="preserve">
+    <value>Email de verificare trimis. Vă rugăm să verificați email-ul.</value>
+  </data>
+  <data name="Verify" xml:space="preserve">
+    <value>Verifică</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="PersonalDataTitle" xml:space="preserve">
+    <value>Date personale</value>
+  </data>
+  <data name="EnterEmailHeader" xml:space="preserve">
+    <value>Introduceți adresa dvs. de email.</value>
+  </data>
+  <data name="LogoutTitle" xml:space="preserve">
+    <value>Deconectare</value>
+  </data>
+  <data name="RegisterUsing" xml:space="preserve">
+    <value>Înregistrați-vă folosind contul dvs. {0}</value>
+  </data>
+  <data name="InvalidLoginAttempt" xml:space="preserve">
+    <value>Încercarea de conectare a eșuat.</value>
+  </data>
+  <data name="MissingPasswordResetCode" xml:space="preserve">
+    <value>Un cod trebuie furnizat pentru resetarea parolei.</value>
+  </data>
+  <data name="RecordDetailsTitle" xml:space="preserve">
+    <value>Gestionați detaliile înregistrării</value>
+  </data>
+  <data name="AdminIndexTitle" xml:space="preserve">
+    <value>Gestionați pagina de administrare</value>
+  </data>
+  <data name="AddRecordTitle" xml:space="preserve">
+    <value>Adăugați o nouă înregistrare</value>
+  </data>
+  <data name="AddRecordHeader" xml:space="preserve">
+    <value>Adăugați o nouă înregistrare</value>
+  </data>
+  <data name="SelectOption" xml:space="preserve">
+    <value>--Selectați--</value>
+  </data>
+  <data name="CreateRecordAction" xml:space="preserve">
+    <value>Adaugă</value>
+  </data>
+  <data name="DeleteRecordAction" xml:space="preserve">
+    <value>Șterge</value>
+  </data>
+  <data name="DeleteRecordTitle" xml:space="preserve">
+    <value>Ștergeți înregistrarea</value>
+  </data>
+  <data name="DeleteRecordHeader" xml:space="preserve">
+    <value>Șterge</value>
+  </data>
+  <data name="DeleteRecordConfirmationHeader" xml:space="preserve">
+    <value>Ești sigur că vrei să ștergi această înregistrare?</value>
+  </data>
+  <data name="ViewRecordDetailsTitle" xml:space="preserve">
+    <value>Detalii înregistrări</value>
+  </data>
+  <data name="ViewRecordDetailsHeader" xml:space="preserve">
+    <value>Detalii</value>
+  </data>
+  <data name="EditRecord" xml:space="preserve">
+    <value>Editați</value>
+  </data>
+  <data name="EditRecordTitle" xml:space="preserve">
+    <value>Editați</value>
+  </data>
+  <data name="EditRecordHeader" xml:space="preserve">
+    <value>Editați înregistrarea</value>
+  </data>
+  <data name="SaveRecordAction" xml:space="preserve">
+    <value>Salvează</value>
+  </data>
+  <data name="Record_ID" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="Record_Year" xml:space="preserve">
+    <value>An</value>
+  </data>
+  <data name="Record_Price" xml:space="preserve">
+    <value>Preț</value>
+  </data>
+  <data name="Record_Description" xml:space="preserve">
+    <value>Descriere</value>
+  </data>
+  <data name="Record_Format" xml:space="preserve">
+    <value>Format</value>
+  </data>
+  <data name="Record_Release" xml:space="preserve">
+    <value>Lansare</value>
+  </data>
+  <data name="Record_RecordCondition" xml:space="preserve">
+    <value>Starea înregistrării</value>
+  </data>
+  <data name="Record_Categories" xml:space="preserve">
+    <value>Categorii</value>
+  </data>
+  <data name="Record_Genres" xml:space="preserve">
+    <value>Genuri</value>
+  </data>
+  <data name="Record_Styles" xml:space="preserve">
+    <value>Stiluri</value>
+  </data>
+  <data name="RecordsIndexTitle" xml:space="preserve">
+    <value>Index</value>
+  </data>
+  <data name="AdminTools" xml:space="preserve">
+    <value>Instrumente de admin</value>
+  </data>
+  <data name="AdminHome" xml:space="preserve">
+    <value>Acasă</value>
+  </data>
+  <data name="ManageUsers" xml:space="preserve">
+    <value>Gestionare Utilizatori</value>
+  </data>
+  <data name="ManageRecords" xml:space="preserve">
+    <value>Gestionare Înregistrări</value>
+  </data>
+  <data name="RecordDetails" xml:space="preserve">
+    <value>Detaliile înregistrărilor</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>Înregistrare</value>
+  </data>
+  <data name="WelcomeAdmin" xml:space="preserve">
+    <value>Bine ați venit, admin</value>
+  </data>
+  <data name="AdminIndexDescription" xml:space="preserve">
+    <value>Această pagină ar trebui să fie vizibilă numai pentru Admin.</value>
+  </data>
+  <data name="ManageUsersTitle" xml:space="preserve">
+    <value>Gestionați pagina utilizatorilor</value>
+  </data>
+  <data name="ManageUsersHeader" xml:space="preserve">
+    <value>Gestionați utilizatorii existenți</value>
+  </data>
+  <data name="AddUser" xml:space="preserve">
+    <value>Adăugați utilizator</value>
+  </data>
+  <data name="RemoveLockout" xml:space="preserve">
+    <value>Deblocați</value>
+  </data>
+  <data name="Lockout" xml:space="preserve">
+    <value>Blocați</value>
+  </data>
+  <data name="AddUserTitle" xml:space="preserve">
+    <value>Adăugați un utilizator nou</value>
+  </data>
+  <data name="AddUserHeader" xml:space="preserve">
+    <value>Adăugați un utilizator nou</value>
+  </data>
+  <data name="EditUserTitle" xml:space="preserve">
+    <value>Editați detaliile utilizatorului</value>
+  </data>
+  <data name="EditUserHeader" xml:space="preserve">
+    <value>Editați detaliile utilizatorului</value>
+  </data>
+  <data name="StringMaxLength" xml:space="preserve">
+    <value>{0} trebuie să fie la maxim {1} caractere.</value>
+  </data>
+  <data name="RecordTitle" xml:space="preserve">
+    <value>Titlul înregistrării</value>
+  </data>
+  <data name="MinValue" xml:space="preserve">
+    <value>Vă rugăm să introduceți o valoare mai mare decât {1}</value>
+  </data>
+  <data name="Record_CreatedOn" xml:space="preserve">
+    <value>Creat la</value>
+  </data>
+  <data name="Record_Photos" xml:space="preserve">
+    <value>Poze</value>
+  </data>
+  <data name="UserRoles" xml:space="preserve">
+    <value>Roluri</value>
+  </data>
+</root>

@@ -1,0 +1,44 @@
+﻿@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.Extensions.Options
+@using RecordStore.Core.Resources;
+
+@inject IOptions<RequestLocalizationOptions> LocOptions
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>().RequestCulture.UICulture.Name;
+    var region = requestCulture.Substring(3, 2).ToLower();
+    var cultureItems = LocOptions.Value.SupportedUICultures
+        .Select(c => new SelectListItem { Value = c.Name, Text = UILabels.ResourceManager.GetString(c.Name) })
+        .ToList();
+    var returnUrl = string.IsNullOrEmpty(Context.Request.Path) ? "~/" : $"~{Context.Request.Path.Value}{Context.Request.QueryString}";
+}
+
+<div class="navbar-nav dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <span class="fi fi-@region"></span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        @foreach (var culture in LocOptions.Value.SupportedUICultures)
+        {
+            var countryCode = culture.Name.Substring(3, 2).ToLower();
+            <li>
+                <a class="dropdown-item" href="#" onclick="changeLanguage('@culture.Name')">
+                    <span class="fi fi-@countryCode"></span>
+                    @(" ")@UILabels.ResourceManager.GetString(culture.Name)
+                </a>
+            </li>
+        }
+    </ul>
+    <script>
+        function changeLanguage(toLanguage) {
+            document.getElementById("languagePicker").value = toLanguage;
+            document.getElementById("selectLanguage").submit();
+        }
+    </script>
+    <form id="selectLanguage" method="post" class="d-none" role="form"
+          asp-area="" asp-controller="Home" asp-action="SetCulture" asp-route-returnUrl="@returnUrl">
+        <select class="form-select form-select-sm" id="languagePicker"
+                name="culture" asp-for="@requestCulture" asp-items="cultureItems">
+        </select>
+    </form>
+</div>

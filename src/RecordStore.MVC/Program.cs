@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Options;
 using RecordStore.Core.Entities.Identity;
 using RecordStore.Infrastructure.Data;
 using RecordStore.MVC.Extensions;
@@ -11,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services
@@ -22,9 +24,16 @@ builder.Services
 
 builder.Services.ConfigureDependecyInjections();
 
-builder.Services.AddControllersWithViews();
+builder.Services.ConfigureLocalization();
+
+builder.Services
+    .AddControllersWithViews()
+    .ConfigureViewLocalization();
 
 var app = builder.Build();
+
+var locOptions = app.Services.GetService<IOptions<RequestLocalizationOptions>>();
+app.UseRequestLocalization(locOptions.Value);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -1,9 +1,12 @@
-﻿using RecordStore.Core.Entities.Models;
+﻿using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Razor;
+using RecordStore.Core.Entities.Models;
 using RecordStore.Core.Interfaces;
 using RecordStore.Core.Settings;
 using RecordStore.Infrastructure.Repositories;
 using RecordStore.Service.Interfaces;
 using RecordStore.Service.Services;
+using System.Globalization;
 
 namespace RecordStore.MVC.Extensions
 {
@@ -35,6 +38,37 @@ namespace RecordStore.MVC.Extensions
             });
 
             return services;
+        }
+
+        public static IServiceCollection ConfigureLocalization(this IServiceCollection services)
+        {
+            services.AddLocalization(o => { o.ResourcesPath = "Resources"; });
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var cultures = new List<CultureInfo> {
+                    new CultureInfo("en-US"),
+                    new CultureInfo("ro-RO"),
+                    new CultureInfo("ru-RU")
+                };
+                options.DefaultRequestCulture = new RequestCulture("en-US");
+                options.SupportedCultures = cultures;
+                options.SupportedUICultures = cultures;
+                options.FallBackToParentUICultures = true;
+                options.RequestCultureProviders.Clear();
+                //options.RequestCultureProviders.Insert(0, new RouteDataRequestCultureProvider());
+                //options.RequestCultureProviders.Insert(0, new QueryStringRequestCultureProvider());
+                options.RequestCultureProviders.Insert(0, new CookieRequestCultureProvider());
+                //options.RequestCultureProviders.Insert(3, new AcceptLanguageHeaderRequestCultureProvider());
+            });
+            return services;
+        }
+
+        public static IMvcBuilder ConfigureViewLocalization(this IMvcBuilder mvcBuilder)
+        {
+            mvcBuilder
+                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+                .AddDataAnnotationsLocalization();
+            return mvcBuilder;
         }
     }
 }
