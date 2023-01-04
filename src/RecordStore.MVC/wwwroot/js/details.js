@@ -1,9 +1,49 @@
 var cachedCategoryOptions = null;
 var cachedCategories = null;
+var tablesLocales = {
+    Categories: {
+        title: 'Categories',
+        fields: {
+            name: 'Name',
+            parentCategoryId: 'Parent Category',
+            position: 'Position'
+        }
+    },
+    Releases: {
+        title: 'Releases',
+        fields: {
+            name: 'Name'
+        }
+    },
+    Genres: {
+        title: 'Genres',
+        fields: {
+            name: 'Name'
+        }
+    },
+    Styles: {
+        title: 'Styles',
+        fields: {
+            name: 'Name'
+        }
+    },
+    Formats: {
+        title: 'Formats',
+        fields: {
+            name: 'Name'
+        }
+    },
+    Conditions: {
+        title: 'Conditions',
+        fields: {
+            name: 'Name'
+        }
+    }
+}
 
 $(document).ready(() => {
     $('#CategoryTableContainer').jtable({
-        title: 'Categories',
+        title: tablesLocales.Categories.title,
         actions: {
             listAction: (postData, jtParams) => getRecords('/api/Categories', postData, jtParams),
             createAction: (postData) => createRecord('/api/Categories', postData),
@@ -16,12 +56,12 @@ $(document).ready(() => {
                 list: false
             },
             name: {
-                title: 'Name',
+                title: tablesLocales.Categories.fields.name,
                 width: '45%',
                 inputClass: 'validate[required,minSize[3]],maxSize[100]]'
             },
             parentCategoryId: {
-                title: 'Parent Category',
+                title: tablesLocales.Categories.fields.parentCategoryId,
                 width: '45%',
                 options: (data) => {
                     if (!cachedCategoryOptions) { //Check for cache
@@ -46,7 +86,7 @@ $(document).ready(() => {
                 }
             },
             position: {
-                title: 'Position',
+                title: tablesLocales.Categories.fields.position,
                 width: '10%',
                 defaultValue: 0,
             }
@@ -89,7 +129,7 @@ $(document).ready(() => {
 
 
     $('#ReleaseTableContainer').jtable({
-        title: 'Releases',
+        title: tablesLocales.Releases.title,
         actions: {
             listAction: (postData, jtParams) => getRecords('/api/Releases', postData, jtParams),
             createAction: (postData) => createRecord('/api/Releases', postData),
@@ -102,7 +142,7 @@ $(document).ready(() => {
                 list: false
             },
             name: {
-                title: 'Name',
+                title: tablesLocales.Releases.fields.name,
                 width: '40%',
                 inputClass: 'validate[required,minSize[3]],maxSize[100]]'
             }
@@ -125,7 +165,7 @@ $(document).ready(() => {
 
 
     $('#GenreTableContainer').jtable({
-        title: 'Genres',
+        title: tablesLocales.Genres.title,
         actions: {
             listAction: (postData, jtParams) => getRecords('/api/Genres', postData, jtParams),
             createAction: (postData) => createRecord('/api/Genres', postData),
@@ -138,7 +178,7 @@ $(document).ready(() => {
                 list: false
             },
             name: {
-                title: 'Name',
+                title: tablesLocales.Genres.fields.name,
                 width: '40%',
                 inputClass: 'validate[required,minSize[3]],maxSize[100]]'
             }
@@ -161,7 +201,7 @@ $(document).ready(() => {
 
 
     $('#StyleTableContainer').jtable({
-        title: 'Styles',
+        title: tablesLocales.Styles.title,
         actions: {
             listAction: (postData, jtParams) => getRecords('/api/Styles', postData, jtParams),
             createAction: (postData) => createRecord('/api/Styles', postData),
@@ -174,7 +214,7 @@ $(document).ready(() => {
                 list: false
             },
             name: {
-                title: 'Name',
+                title: tablesLocales.Styles.fields.name,
                 width: '40%',
                 inputClass: 'validate[required,minSize[3]],maxSize[100]]'
             }
@@ -184,7 +224,7 @@ $(document).ready(() => {
 
 
     $('#FormatTableContainer').jtable({
-        title: 'Formats',
+        title: tablesLocales.Formats.title,
         actions: {
             listAction: (postData, jtParams) => getRecords('/api/Formats', postData, jtParams),
             createAction: (postData) => createRecord('/api/Formats', postData),
@@ -197,7 +237,7 @@ $(document).ready(() => {
                 list: false
             },
             name: {
-                title: 'Name',
+                title: tablesLocales.Formats.fields.name,
                 width: '40%',
                 inputClass: 'validate[required,minSize[3]],maxSize[100]]'
             }
@@ -220,7 +260,7 @@ $(document).ready(() => {
 
 
     $('#ConditionTableContainer').jtable({
-        title: 'Conditions',
+        title: tablesLocales.Conditions.title,
         actions: {
             listAction: (postData, jtParams) => getRecords('/api/Conditions', postData, jtParams),
             createAction: (postData) => createRecord('/api/Conditions', postData),
@@ -233,7 +273,7 @@ $(document).ready(() => {
                 list: false
             },
             name: {
-                title: 'Name',
+                title: tablesLocales.Conditions.fields.name,
                 width: '40%',
                 inputClass: 'validate[required,minSize[3]],maxSize[100]]'
             }
