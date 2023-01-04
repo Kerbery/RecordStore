@@ -15,10 +15,12 @@ namespace RecordStore.Core.ViewModels.Record
 
         [Display(Name = nameof(UILabels.Record_Year), ResourceType = typeof(UILabels))]
         [Range(0, int.MaxValue, ErrorMessageResourceName = nameof(UILabels.MinValue), ErrorMessageResourceType = typeof(UILabels))]
+        [RegularExpression("\\d+", ErrorMessageResourceName = nameof(UILabels.NotANumber), ErrorMessageResourceType = typeof(UILabels))]
         public int Year { get; set; }
 
         [Display(Name = nameof(UILabels.Record_Price), ResourceType = typeof(UILabels))]
         [Range(0, double.MaxValue, ErrorMessageResourceName = nameof(UILabels.MinValue), ErrorMessageResourceType = typeof(UILabels))]
+        [RegularExpression("\\d+(?:[,.]\\d*)?", ErrorMessageResourceName = nameof(UILabels.NotANumber), ErrorMessageResourceType = typeof(UILabels))]
         public double Price { get; set; }
 
         [Display(Name = nameof(UILabels.Record_Description), ResourceType = typeof(UILabels))]
