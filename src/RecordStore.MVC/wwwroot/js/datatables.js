@@ -1,5 +1,31 @@
-﻿$(document).ready(function () {
+﻿var datatablesLocalization = {
+    language: { url: "//cdn.datatables.net/plug-ins/1.13.1/i18n/en.json" },
+    buttons: {
+        addNewRecord: "Add New Record",
+        searchPanes: "Filters",
+        edit: "Edit",
+        details: "Details",
+        remove: "Remove",
+    },
+    labels: {
+        description: "Description",
+        title: "Title",
+        year: "Year",
+        price: "Price",
+        format: "Format",
+        release: "Release",
+        condition: "Record Condition",
+        categories: "Categories",
+        genres: "Genres",
+        styles: "Styles",
+    }
+}
+
+$(document).ready(function () {
     var table = $('#myTable').DataTable({
+        language: {
+            url: datatablesLocalization.language.url
+        },
         dom:
             //"<'row'<'col-sm-12'P>>" +
             "<'row'<'col-sm-3'l><'col-sm-6 text-center'B><'col-sm-3'f>>" +
@@ -65,13 +91,13 @@
                 "searchable": false,
                 "orderable": false,
             },
-            { "data": "title", "name": "Title", "autoWidth": true },
-            { "data": "year", "name": "Year", "autoWidth": true },
-            { "data": "price", "name": "Price", "autoWidth": true },
-            { "data": "description", "name": "Description", "autoWidth": true, "visible": false, },
-            { "data": "format", "render": (data, type, row) => (data?.name ?? ''), "name": "Format", "autoWidth": true, "visible": false },
-            { "data": "release", "render": (data, type, row) => (data?.name ?? ''), "name": "Release", "autoWidth": true, "visible": false },
-            { "data": "recordCondition", "render": (data, type, row) => (data?.name ?? ''), "name": "RecordCondition", "autoWidth": true, "visible": false },
+            { "data": "title", "name": datatablesLocalization.labels.title, "autoWidth": true },
+            { "data": "year", "name": datatablesLocalization.labels.year, "autoWidth": true },
+            { "data": "price", "name": datatablesLocalization.labels.price, "autoWidth": true },
+            { "data": "description", "name": datatablesLocalization.labels.description, "autoWidth": true, "visible": false, },
+            { "data": "format", "render": (data, type, row) => (data?.name ?? ''), "name": datatablesLocalization.labels.format, "autoWidth": true, "visible": false },
+            { "data": "release", "render": (data, type, row) => (data?.name ?? ''), "name": datatablesLocalization.labels.release, "autoWidth": true, "visible": false },
+            { "data": "recordCondition", "render": (data, type, row) => (data?.name ?? ''), "name": datatablesLocalization.labels.condition, "autoWidth": true, "visible": false },
             {
                 "data": "categories",
                 "render": {
@@ -101,9 +127,9 @@
             },
             {
                 "render": (data, x, row) => {
-                    return ('<a class="btn d-block btn-primary mb-1" href="/Admin/Records/Edit/' + row.id + '" title="Edit Record"><i class="bi bi-pencil"></i> Edit</a>' +
-                        '<a class="btn d-block btn-info mb-1" href="/Admin/Records/Details/' + row.id + '" title="View Details"><i class="bi bi-file-richtext"></i> Details</a>' +
-                        '<a class="btn d-block btn-danger" href="/Admin/Records/Delete/' + row.id + '" title="Delete Record"><i class="bi bi-trash"></i> Remove</a>');
+                    return ('<a class="btn d-block btn-primary mb-1" href="/Admin/Records/Edit/' + row.id + '" title="Edit Record"><i class="bi bi-pencil"></i> ' + datatablesLocalization.buttons.edit + '</a>' +
+                        '<a class="btn d-block btn-info mb-1" href="/Admin/Records/Details/' + row.id + '" title="View Details"><i class="bi bi-file-richtext"></i> ' + datatablesLocalization.buttons.details + '</a>' +
+                        '<a class="btn d-block btn-danger" href="/Admin/Records/Delete/' + row.id + '" title="Delete Record"><i class="bi bi-trash"></i> ' + datatablesLocalization.buttons.remove + '</a>');
                 },
                 "sortable": false,
                 "width": "120px",
@@ -111,14 +137,15 @@
         ],
         buttons: [//'searchPanes',
             {
-                "extend": "searchPanes",
-                "config": {
-                    "layout": "columns-2",
-                    "initCollapsed": true
+                extend: "searchPanes",
+                text: datatablesLocalization.buttons.searchPanes,
+                config: {
+                    layout: "columns-2",
+                    initCollapsed: true
                 }
             },
             {
-                text: 'Add New Record',
+                text: datatablesLocalization.buttons.addNewRecord,
                 className: "btn-primary",
                 action: function (e, dt, node, config) {
                     location.href = '/Admin/Records/Create';
@@ -161,49 +188,49 @@ const format = (d) => {
     return (
         '<table cellpadding="5" cellspacing="0" border="0" class="d-block ps-5">' +
         '<tr>' +
-        '<td><b>Description:</b></td>' +
+        '<td><b>' + datatablesLocalization.labels.description + ':</b></td>' +
         '<td>' + (d.description ?? '') + '</td>' +
         '</tr>' +
         '</table>' +
         '<table cellpadding="5" cellspacing="0" border="0" class="d-inline-block ps-5">' +
         '<tr>' +
-        '<td><b>Title:</b></td>' +
+        '<td><b>' + datatablesLocalization.labels.title + ':</b></td>' +
         '<td>' + d.title + '</td>' +
         '</tr>' +
         '<tr>' +
-        '<td><b>Year:</b></td>' +
+        '<td><b>' + datatablesLocalization.labels.year + ':</b></td>' +
         '<td>' + d.year + '</td>' +
         '</tr>' +
         '<tr>' +
-        '<td><b>Price:</b></td>' +
+        '<td><b>' + datatablesLocalization.labels.price + ':</b></td>' +
         '<td>' + (d.price) + '</td>' +
         '</tr>' +
         '</table>' +
         '<table cellpadding="5" cellspacing="0" border="0" class="d-inline-block ps-5">' +
         '<tr>' +
-        '<td><b>Format:</b></td>' +
+        '<td><b>' + datatablesLocalization.labels.format + ':</b></td>' +
         '<td>' + (d.format?.name ?? '') + '</td>' +
         '</tr>' +
         '<tr>' +
-        '<td><b>Release:</b></td>' +
+        '<td><b>' + datatablesLocalization.labels.release + ':</b></td>' +
         '<td>' + (d.release?.name ?? '') + '</td>' +
         '</tr>' +
         '<tr>' +
-        '<td><b>Record Condition:</b></td>' +
+        '<td><b>' + datatablesLocalization.labels.condition + ':</b></td>' +
         '<td>' + (d.recordCondition?.name ?? '') + '</td>' +
         '</tr>' +
         '</table>' +
         '<table cellpadding="5" cellspacing="0" border="0" class="d-inline-block ps-5">' +
         '<tr>' +
-        '<td><b>Categories:</b></td>' +
+        '<td><b>' + datatablesLocalization.labels.categories + ':</b></td>' +
         '<td>' + d.categories.map(c => c.name).join(', ') + '</td>' +
         '</tr>' +
         '<tr>' +
-        '<td><b>Genres:</b></td>' +
+        '<td><b>' + datatablesLocalization.labels.genres + ':</b></td>' +
         '<td>' + d.genres.map(c => c.name).join(', ') + '</td>' +
         '</tr>' +
         '<tr>' +
-        '<td><b>Styles:</b></td>' +
+        '<td><b>' + datatablesLocalization.labels.styles + ':</b></td>' +
         '<td>' + d.styles.map(c => c.name).join(', ') + '</td>' +
         '</tr>' +
         '</table>'
