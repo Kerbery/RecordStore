@@ -29,7 +29,7 @@ namespace RecordStore.MVC.Areas.Identity.Pages.Account.Manage
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
         /// 
-        [Display(Name = nameof(UILabels.Username), ResourceType = typeof(UILabels))]
+        [Display(Name = nameof(UILabels.Username))]
         public string Username { get; set; }
 
         /// <summary>
@@ -56,8 +56,8 @@ namespace RecordStore.MVC.Areas.Identity.Pages.Account.Manage
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Display(Name = nameof(UILabels.PhoneNumber), ResourceType = typeof(UILabels))]
-            [Phone(ErrorMessageResourceName = nameof(UILabels.InvlidPhoneNumber), ErrorMessageResourceType = typeof(UILabels))]
+            [Display(Name = nameof(UILabels.PhoneNumber))]
+            [Phone(ErrorMessage = nameof(UILabels.InvlidPhoneNumber))]
             public string PhoneNumber { get; set; }
         }
 

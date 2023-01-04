@@ -76,9 +76,9 @@ namespace RecordStore.MVC.Areas.Identity.Pages.Account.Manage
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [DataType(DataType.Text)]
-            [Display(Name = nameof(UILabels.VerificationCode), ResourceType = typeof(UILabels))]
-            [Required(ErrorMessageResourceName = nameof(UILabels.FieldRequired), ErrorMessageResourceType = typeof(UILabels))]
-            [StringLength(7, MinimumLength = 6, ErrorMessageResourceName = nameof(UILabels.StringLengthRange), ErrorMessageResourceType = typeof(UILabels))]
+            [Display(Name = nameof(UILabels.VerificationCode))]
+            [Required(ErrorMessage = nameof(UILabels.FieldRequired))]
+            [StringLength(7, MinimumLength = 6, ErrorMessage = nameof(UILabels.StringLengthRange))]
             public string Code { get; set; }
         }
 

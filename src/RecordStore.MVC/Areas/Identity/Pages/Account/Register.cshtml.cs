@@ -69,17 +69,17 @@ namespace RecordStore.MVC.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Display(Name = nameof(UILabels.Username), ResourceType = typeof(UILabels))]
-            [Required(ErrorMessageResourceName = nameof(UILabels.FieldRequired), ErrorMessageResourceType = typeof(UILabels))]
-            [StringLength(100, MinimumLength = 3, ErrorMessageResourceName = nameof(UILabels.StringLengthRange), ErrorMessageResourceType = typeof(UILabels))]
+            [Display(Name = nameof(UILabels.Username))]
+            [Required(ErrorMessage = nameof(UILabels.FieldRequired))]
+            [StringLength(100, MinimumLength = 3, ErrorMessage = nameof(UILabels.StringLengthRange))]
             public string Username { get; set; }
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Display(Name = nameof(UILabels.Email), ResourceType = typeof(UILabels))]
-            [Required(ErrorMessageResourceName = nameof(UILabels.FieldRequired), ErrorMessageResourceType = typeof(UILabels))]
-            [EmailAddress(ErrorMessageResourceName = nameof(UILabels.EmailInvalid), ErrorMessageResourceType = typeof(UILabels))]
+            [Display(Name = nameof(UILabels.Email))]
+            [Required(ErrorMessage = nameof(UILabels.FieldRequired))]
+            [EmailAddress(ErrorMessage = nameof(UILabels.EmailInvalid))]
             public string Email { get; set; }
 
             /// <summary>
@@ -87,9 +87,9 @@ namespace RecordStore.MVC.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [DataType(DataType.Password)]
-            [Display(Name = nameof(UILabels.Password), ResourceType = typeof(UILabels))]
-            [Required(ErrorMessageResourceName = nameof(UILabels.FieldRequired), ErrorMessageResourceType = typeof(UILabels))]
-            [StringLength(100, MinimumLength = 6, ErrorMessageResourceName = nameof(UILabels.StringLengthRange), ErrorMessageResourceType = typeof(UILabels))]
+            [Display(Name = nameof(UILabels.Password))]
+            [Required(ErrorMessage = nameof(UILabels.FieldRequired))]
+            [StringLength(100, MinimumLength = 6, ErrorMessage = nameof(UILabels.StringLengthRange))]
             public string Password { get; set; }
 
             /// <summary>
@@ -97,8 +97,8 @@ namespace RecordStore.MVC.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [DataType(DataType.Password)]
-            [Display(Name = nameof(UILabels.ConfirmPassword), ResourceType = typeof(UILabels))]
-            [Compare(nameof(Password), ErrorMessageResourceName = nameof(UILabels.PasswordMismatch), ErrorMessageResourceType = typeof(UILabels))]
+            [Display(Name = nameof(UILabels.ConfirmPassword))]
+            [Compare(nameof(Password), ErrorMessage = nameof(UILabels.PasswordMismatch))]
             public string ConfirmPassword { get; set; }
         }
 

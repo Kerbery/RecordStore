@@ -52,8 +52,8 @@ namespace RecordStore.MVC.Areas.Identity.Pages.Account.Manage
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [DataType(DataType.Password)]
-            [Display(Name = nameof(UILabels.CurrentPassword), ResourceType = typeof(UILabels))]
-            [Required(ErrorMessageResourceName = nameof(UILabels.FieldRequired), ErrorMessageResourceType = typeof(UILabels))]
+            [Display(Name = nameof(UILabels.CurrentPassword))]
+            [Required(ErrorMessage = nameof(UILabels.FieldRequired))]
             public string OldPassword { get; set; }
 
             /// <summary>
@@ -61,9 +61,9 @@ namespace RecordStore.MVC.Areas.Identity.Pages.Account.Manage
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [DataType(DataType.Password)]
-            [Display(Name = nameof(UILabels.NewPassword), ResourceType = typeof(UILabels))]
-            [Required(ErrorMessageResourceName = nameof(UILabels.FieldRequired), ErrorMessageResourceType = typeof(UILabels))]
-            [StringLength(100, MinimumLength = 6, ErrorMessageResourceName = nameof(UILabels.StringLengthRange), ErrorMessageResourceType = typeof(UILabels))]
+            [Display(Name = nameof(UILabels.NewPassword))]
+            [Required(ErrorMessage = nameof(UILabels.FieldRequired))]
+            [StringLength(100, MinimumLength = 6, ErrorMessage = nameof(UILabels.StringLengthRange))]
             public string NewPassword { get; set; }
 
             /// <summary>
@@ -71,8 +71,8 @@ namespace RecordStore.MVC.Areas.Identity.Pages.Account.Manage
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [DataType(DataType.Password)]
-            [Display(Name = nameof(UILabels.ConfirmNewPassword), ResourceType = typeof(UILabels))]
-            [Compare(nameof(NewPassword), ErrorMessageResourceName = nameof(UILabels.PasswordMismatch), ErrorMessageResourceType = typeof(UILabels))]
+            [Display(Name = nameof(UILabels.ConfirmNewPassword))]
+            [Compare(nameof(NewPassword), ErrorMessage = nameof(UILabels.PasswordMismatch))]
             public string ConfirmPassword { get; set; }
         }
 

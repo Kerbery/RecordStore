@@ -8,27 +8,27 @@ namespace RecordStore.Core.ViewModels.User
     {
         public Guid Id { get; set; }
 
-        [Display(Name = nameof(UILabels.Username), ResourceType = typeof(UILabels))]
-        [Required(ErrorMessageResourceName = nameof(UILabels.FieldRequired), ErrorMessageResourceType = typeof(UILabels))]
-        [StringLength(100, MinimumLength = 3, ErrorMessageResourceName = nameof(UILabels.StringLengthRange), ErrorMessageResourceType = typeof(UILabels))]
+        [Display(Name = nameof(UILabels.Username))]
+        [Required(ErrorMessage = nameof(UILabels.FieldRequired))]
+        [StringLength(100, MinimumLength = 3, ErrorMessage = nameof(UILabels.StringLengthRange))]
         public string Username { get; set; }
 
-        [Display(Name = nameof(UILabels.Email), ResourceType = typeof(UILabels))]
-        [Required(ErrorMessageResourceName = nameof(UILabels.FieldRequired), ErrorMessageResourceType = typeof(UILabels))]
-        [EmailAddress(ErrorMessageResourceName = nameof(UILabels.EmailInvalid), ErrorMessageResourceType = typeof(UILabels))]
+        [Display(Name = nameof(UILabels.Email))]
+        [Required(ErrorMessage = nameof(UILabels.FieldRequired))]
+        [EmailAddress(ErrorMessage = nameof(UILabels.EmailInvalid))]
         public string Email { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = nameof(UILabels.NewPassword), ResourceType = typeof(UILabels))]
-        [StringLength(100, MinimumLength = 6, ErrorMessageResourceName = nameof(UILabels.StringLengthRange), ErrorMessageResourceType = typeof(UILabels))]
+        [Display(Name = nameof(UILabels.NewPassword))]
+        [StringLength(100, MinimumLength = 6, ErrorMessage = nameof(UILabels.StringLengthRange))]
         public string? Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = nameof(UILabels.ConfirmPassword), ResourceType = typeof(UILabels))]
-        [Compare(nameof(Password), ErrorMessageResourceName = nameof(UILabels.PasswordMismatch), ErrorMessageResourceType = typeof(UILabels))]
+        [Display(Name = nameof(UILabels.ConfirmPassword))]
+        [Compare(nameof(Password), ErrorMessage = nameof(UILabels.PasswordMismatch))]
         public string? ConfirmPassword { get; set; }
 
-        [Display(Name = nameof(UILabels.UserRoles), ResourceType = typeof(UILabels))]
+        [Display(Name = nameof(UILabels.UserRoles))]
         public IList<RoleViewModel> Roles { get; set; }
     }
 }

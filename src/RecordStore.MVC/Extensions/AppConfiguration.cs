@@ -2,11 +2,13 @@
 using Microsoft.AspNetCore.Mvc.Razor;
 using RecordStore.Core.Entities.Models;
 using RecordStore.Core.Interfaces;
+using RecordStore.Core.Resources;
 using RecordStore.Core.Settings;
 using RecordStore.Infrastructure.Repositories;
 using RecordStore.Service.Interfaces;
 using RecordStore.Service.Services;
 using System.Globalization;
+using System.Reflection;
 
 namespace RecordStore.MVC.Extensions
 {
@@ -67,7 +69,14 @@ namespace RecordStore.MVC.Extensions
         {
             mvcBuilder
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
-                .AddDataAnnotationsLocalization();
+                .AddDataAnnotationsLocalization(options =>
+                {
+                    options.DataAnnotationLocalizerProvider = (type, factory) =>
+                    {
+                        var assemblyName = new AssemblyName(typeof(UILabels).GetTypeInfo().Assembly.FullName);
+                        return factory.Create(nameof(UILabels), assemblyName.Name);
+                    };
+                });
             return mvcBuilder;
         }
     }

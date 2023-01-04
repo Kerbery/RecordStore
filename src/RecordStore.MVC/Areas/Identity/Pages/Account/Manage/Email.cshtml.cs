@@ -35,7 +35,7 @@ namespace RecordStore.MVC.Areas.Identity.Pages.Account.Manage
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
-        [Display(Name = nameof(UILabels.Email), ResourceType = typeof(UILabels))]
+        [Display(Name = nameof(UILabels.Email))]
         public string Email { get; set; }
 
         /// <summary>
@@ -68,9 +68,9 @@ namespace RecordStore.MVC.Areas.Identity.Pages.Account.Manage
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Display(Name = nameof(UILabels.NewEmail), ResourceType = typeof(UILabels))]
-            [Required(ErrorMessageResourceName = nameof(UILabels.FieldRequired), ErrorMessageResourceType = typeof(UILabels))]
-            [EmailAddress(ErrorMessageResourceName = nameof(UILabels.EmailInvalid), ErrorMessageResourceType = typeof(UILabels))]
+            [Display(Name = nameof(UILabels.NewEmail))]
+            [Required(ErrorMessage = nameof(UILabels.FieldRequired))]
+            [EmailAddress(ErrorMessage = nameof(UILabels.EmailInvalid))]
             public string NewEmail { get; set; }
         }
 

@@ -60,8 +60,8 @@ namespace RecordStore.MVC.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
 
-            [Display(Name = nameof(UILabels.Username), ResourceType = typeof(UILabels))]
-            [Required(ErrorMessageResourceName = nameof(UILabels.FieldRequired), ErrorMessageResourceType = typeof(UILabels))]
+            [Display(Name = nameof(UILabels.Username))]
+            [Required(ErrorMessage = nameof(UILabels.FieldRequired))]
             public string Username { get; set; }
 
             /// <summary>
@@ -69,15 +69,15 @@ namespace RecordStore.MVC.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [DataType(DataType.Password)]
-            [Display(Name = nameof(UILabels.Password), ResourceType = typeof(UILabels))]
-            [Required(ErrorMessageResourceName = nameof(UILabels.FieldRequired), ErrorMessageResourceType = typeof(UILabels))]
+            [Display(Name = nameof(UILabels.Password))]
+            [Required(ErrorMessage = nameof(UILabels.FieldRequired))]
             public string Password { get; set; }
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Display(Name = nameof(UILabels.RememberMe), ResourceType = typeof(UILabels))]
+            [Display(Name = nameof(UILabels.RememberMe))]
             public bool RememberMe { get; set; }
         }
 
